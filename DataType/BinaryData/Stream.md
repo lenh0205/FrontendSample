@@ -3,9 +3,28 @@
 * -> _stream data_ in broken parts called **`chunks`**; 
 * -> the computer starts **`processing the data as soon as it receives a chunk`**, not waiting for the whole data
 
-* **`a stream`** is an _abstract interface_
-* -> allow to work with **streaming data** in Node.js
-* -> allows to deal with portions of data (**chunks**) arriving at different moments
+==================================================
+# Stream API
+* -> an _abstract interface_ allows to programmatically **access streams of data** received over the network or created by whatever means locally 
+* -> and process them with JavaScript
+
+* -> **Streaming** involves **`breaking down a resource`** that you want to **`receive, send, or transform`** into small **chunks**
+* -> then **`processing these chunks bit by bit`** (_arriving at different moments_)
+
+* -> while streaming is something **`browsers do anyway`** when **`receiving assets`** like _HTML or videos_ to be shown on webpages
+* -> this capability has never been available to JavaScript before **`fetch with streams`** was introduced (2015)
+
+# Application
+* **Previously**, if we wanted to **`process a resource`** of some kind (be it a video, or a text file, etc.), 
+* -> we would have to **`download the entire file`**, wait for it to be deserialized into a suitable format, and then process it. 
+
+* _`with streams being available to JavaScript`_
+* -> we can now process raw data with JavaScript progressively as soon as it is available on the client, without needing to generate a buffer, string, or blob. 
+* -> this unlocks a number of use cases, some of them:
+
+1. Video effects: piping a readable video stream through a transform stream that applies effects in real time.
+2. Data (de)compression: piping a file stream through a transform stream that selectively (de)compresses it.
+3. Image decoding: piping an HTTP response stream through a transform stream that decodes bytes into bitmap data, and then through another transform stream that translates bitmaps into PNGs. If installed inside the fetch handler of a service worker, this allows you to transparently polyfill new image formats like AVIF.
 
 ==================================================
 # NodeJS "stream" Module

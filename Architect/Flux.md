@@ -9,7 +9,7 @@
 * https://redux.js.org/usage/side-effects-approaches#:~:text=By%20itself%2C%20a%20Redux%20store,to%20happen%20outside%20the%20store.
 * https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux
 
-# Tựu build Flux và async action:
+# Tự build Flux và async action:
 * https://medium.com/capbase-engineering/part-3-the-react-hooks-based-alternative-to-redux-and-the-flux-pattern-a726220a8a9a
 * https://github.com/boostup/react-context-api-multiple-reducers-mulitple-sagas/tree/master
 

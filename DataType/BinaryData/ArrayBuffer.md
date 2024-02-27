@@ -7,8 +7,8 @@
 
 ====================================================
 # ArrayBuffer - the basic binary object
-* **a reference to a fixed-length contiguous memory area** stores a **`raw sequence of bytes`**
-* -> is the _core object, the root of everything, the raw binary data_
+* **`a reference to a fixed-length contiguous memory area`** stores a **`raw sequence of bytes`**
+* -> is the **core object, the root of everything, the raw binary data**
 * -> but for `almost any operation` (_write into it, iterate over it, ..._) we must use a **view**
 
 ```js - VD

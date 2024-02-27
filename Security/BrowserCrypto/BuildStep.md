@@ -12,7 +12,8 @@
 * -> by knowing the key we can calculate the HMAC of a message and just **`compare with a given MAC`**
 * => that is enough as a **`proof of the content's authenticity`**
 
-## PBKDF2 - the most commonly used and secure "KDF" algorithms today
+## PBKDF2 - password-based key derivation function 2
+* -> the **`most commonly used and secure "KDF" algorithms today`** to hash password before storing them
 * -> normally it uses **`HMAC to hash`**, using the **`password as a content`** and the **`salt as a key`**
 * -> it can **`increase significantly their strength`** just by increasing the **iterations** **`of hashing`**
 * => this way, PBKDF2 can generate **any amount of data apparently random but reproducible** **`once you know the password and the salt`**

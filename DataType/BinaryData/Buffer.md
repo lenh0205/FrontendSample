@@ -26,6 +26,7 @@
 # "buffer" module of NodeJS
 * **`Buffer`** - is an **abstraction** allow to **`deal with raw binary data`** in Node.js
 * -> particularly relevant when dealing with _files_ and _networks_ or _I/O_ in general
+* -> is implemented using Uint8Array
 
 * **`a buffer`** - represents **a chunk of memory** that is allocated to our computer
 * -> is used to **`store bytes`**

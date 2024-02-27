@@ -5,7 +5,13 @@
 ## Advantage
 * Kỹ thuật này hữu ích trong trường hợp không có đủ thông tin như Content-Type cho một nội dung cụ thể, do đó có khả năng trình duyệt diễn giải nội dung không chính xác.
 
-## Security hole
+## Process:
+* -> Browser request for a specific response content that **`don't have Content Type`** 
+* -> Browser try to "sniffing" the body of request and parse the body 
+* -> than process it
+
+=================================================
+# Security hole
 * MIME sniffing có thể gây ra lỗ hổng bảo mật. 
 * -> this security hole can be **`dangerous for both owner and user`**
 * -> Attacher can take advantage of MIME to do an **`Cross Site Scripting`** Attach
@@ -27,11 +33,6 @@
 ```js
 app.use(helmet.noSniff());
 ```
-
-## Process:
-* -> Browser request for a specific response content that **`don't have Content Type`** 
-* -> Browser try to "sniffing" the body of request and parse the body 
-* -> than process it
 
 ==================================================
 ## MIME type
