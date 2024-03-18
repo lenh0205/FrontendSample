@@ -1,5 +1,6 @@
 # Decorator
 * -> giúp ta **`thay đổi hành vi của các Hàm/Phương thức`** mà **`không tác động vào source code của chúng`** (_1 hàm để trang trí thôi chứ không thay đổi hàm gốc_)
+
 * -> những kỹ thuật như **Debouncing**, **throttle**, **Higher-Order Component** in React là những ví dụ về _function decorator_ 
 * -> the **`parameters of decoratee`** (a function as argument) and the **`decoratee`** itself are **`decoupled`** by using the **currying technique**
 
@@ -41,7 +42,7 @@ console.log(calc(1)) // 1
 * Vấn đề: khi Method của object tham chiếu đến this
 
 ```js
-// Việc đưa method làm function đầu vào decorator làm thay đổi context thay đổi
+// Việc đưa method làm function đầu vào decorator làm context thay đổi
 // this chuyển từ "worker" thành "window"
 const worker = {
 	multiplier: 1,

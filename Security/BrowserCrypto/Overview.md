@@ -11,7 +11,7 @@
 * -> VD: just to decrypt a file during uploading before sending
 * -> VD:  to encrypt or decrypt an email on the browser
 
-* => 4 important platform for building **Cryptographic system** in Javascript: **`CryptoJS, Web Crytography API, NodeJS crypto`**
+* => 3 important platform for building **Cryptographic system** in Javascript: **`CryptoJS, Web Crytography API, NodeJS crypto`**
 
 ======================================================
 # Encryption

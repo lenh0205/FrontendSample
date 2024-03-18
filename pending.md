@@ -153,6 +153,13 @@ https://toidicodedao.com/2019/10/08/message-queue-la-gi-ung-dung-microservice/
 * https://dev.to/danielkun/cryptography-what-is-the-difference-between-hashing-signing-and-mac-5dbp
 * https://www.sciencedirect.com/science/article/pii/S2215098621002081
 * https://www.linkedin.com/advice/3/what-challenges-risks-using-hmac-digital-signature
+## Chứng thực chữ ký số
+https://www.rfc-editor.org/rfc/rfc2315
+https://www.openssl.org/docs/man1.0.2/man1/pkcs7.html
+https://www.cryptomathic.com/news-events/blog/introduction-to-digital-signatures-and-pkcs-7
+https://security.stackexchange.com/questions/73156/
+https://comodosslstore.com/resources/a-ssl-certificate-file-extension-explanation-pem-pkcs7-der-and-pkcs12/whats-the-difference-between-x-509-and-pkcs7-certificate
+
 
 # Web Socket
 * https://anonystick.com/blog-developer/websocket-thuc-hanh-chi-tiet-2021011512994571
