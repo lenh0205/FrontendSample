@@ -34,8 +34,9 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 
 ==================================================
 # useReducer:
-* Dùng thay thế cho useState
-* s/d với **`state transitions complex`** or reply on the **`previous state`**
+* -> dùng thay thế cho **useState**
+* -> khi mà **`state transitions complex`**, reply on the **`previous state`** (_need multiple updates_)
+* -> hoặc **`handle side-effects`** in response to state changes
 
 ===================================================
 # useCallback & useMemo

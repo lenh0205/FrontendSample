@@ -11,6 +11,9 @@ https://blog.devgenius.io/react-context-pitfalls-9fb67723183b
 # useReducer
 https://www.frontendmag.com/tutorials/usereducer-vs-usestate/
 
+# hook
+https://www.imensosoftware.com/blog/react-js-hooks-simplifying-state-management-in-your-applications/
+
 # Security
 https://viblo.asia/p/lo-hong-file-upload-3P0lPnMbKox
 
@@ -134,6 +137,44 @@ https://xuanthulab.net/lap-trinh-bat-dong-bo-asynchronou-c-c-sharp-voi-bat-dong-
 https://xuanthulab.net/lop-queue-hang-doi-va-ngan-xep-stack-trong-c-c-sharp.html
 https://xuanthulab.net/su-dung-delegate-trong-c-ham-uy-quyen.html
 
+# Side-Effect, Saga, useReducer
+https://react.dev/learn/escape-hatches
+https://clouddevs.com/react/managing-state-and-side-effects-hooks-in-reactjs/
+https://stackoverflow.com/questions/60694264/how-to-add-side-effects-when-using-usereducer
+https://github.com/conorhastings/use-reducer-with-side-effects
+https://codeburst.io/colocating-side-effects-with-actions-using-usereducer-490368c96f77?gi=83827a38712c
+https://blog.logrocket.com/react-usereducer-hook-ultimate-guide/
+https://medium.com/the-apps-team/react-hooks-context-side-effects-api-calls-etc-simple-1c83b99502ac
+https://medium.com/@queenskisivuli/when-to-use-usereducer-and-when-not-to-use-it-in-react-f8cd5208aee8
+https://github.com/davidkpiano/useEffectReducer
+https://dev.to/milu_franz/demystifying-react-hooks-usereducer-3o3n
+https://hackernoon.com/mastering-usereducer-for-complex-state-management
+https://www.itpathsolutions.com/unlocking-the-power-of-usereducer-executing-callbacks-after-state-changes/
+https://redux.js.org/usage/side-effects-approaches
+https://www.quora.com/What-are-some-ways-to-handle-side-effects-in-React-and-Redux
+https://medium.com/capbase-engineering/part-3-the-react-hooks-based-alternative-to-redux-and-the-flux-pattern-a726220a8a9a
+https://medium.com/@JChurin/a-walk-through-the-saga-a400d7a3b6d7
+
+https://stackoverflow.com/questions/72360331/is-it-worth-using-redux-saga-in-the-long-term
+https://medium.com/slido-dev-blog/why-you-need-no-redux-saga-4d4dc46e448
+https://dev.to/sunflower/if-a-company-doesn-t-use-redux-thunk-or-redux-saga-what-do-they-use-3one
+https://medium.com/@rossitrile93/how-i-replace-redux-redux-saga-with-react-446b4c84f788
+https://github.com/rossitrile/replace-redux-saga-by-react-hooks
+https://www.qovery.com/blog/why-we-replaced-redux-by-react-query/
+https://medium.com/inside-league/from-redux-sagas-to-react-query-f5ef7a676503
+
+https://dev.to/tqm1990/redux-saga-without-redux-eda
+https://stackoverflow.com/questions/38861753/how-to-use-redux-saga-with-without-redux
+https://github.com/redux-saga/redux-saga/discussions/2264
+https://github.com/redux-saga/redux-saga/issues/1198
+
+https://www.javatpoint.com/what-is-redux-saga
+https://blog.logrocket.com/understanding-redux-saga-action-creators-sagas/
+https://ibjects.medium.com/getting-started-with-redux-saga-tutorial-740954fc9e49
+https://www.geeksforgeeks.org/what-is-redux-saga/
+
+
+
 # Expession Tree
 * https://hiepsiit.com/detail/linq/ngon-ngu-linq/cay-bieu-thuc-trong-linq 
 
@@ -166,3 +207,6 @@ https://comodosslstore.com/resources/a-ssl-certificate-file-extension-explanatio
 
 # OOP
 * https://nguyenanhtuanweb.wordpress.com/2018/03/16/tinh-ke-thua-trong-c/
+
+# microservices:
+https://microservices.io/index.html

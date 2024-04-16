@@ -1,3 +1,17 @@
+# Sử dụng "Computed" tab của DevTool để debug CSS
+* -> khác với **`Styles`** tab show styles apply to element; còn **`Computed`** tab displays **resolved styles** (_our stylesheet, those derived from inheritance, and the browser’s defaults_)  
+* => tức là nó it shows us the **values that the browser is actually using on the rendered website**
+
+* -> ta có thể di chuột vào từng thuộc tính, nó sẽ hiện dấu mũi tên cho ta chuyển về **`Styles`** và xem cách property đó được CSS trong StyleSheet
+
+* -> nhưng vấn đề sẽ xuất hiện những **`readonly property`** (chúng bị làm mờ, ta không thể click vào hoặc chỉnh sữa)
+* -> những thuộc tính này đặc biệt ở chỗ chúng là **runtime calculated** (_calculated from either its children or parent based on runtime layout rendering_); they have no **`CSS definition`** (_no directly defined, no inherited, no browser built-in_)
+
+* khi ta check vào **`Show all`**, sẽ xuất hiện thêm nhiều **`readonly property`** nhưng chúng không phải **`runtime caculated`** mà là **`CSS spec default value`**
+
+
+=============================================================================
+
 # Check element CSS display with JavaScript
 
 * **Getting inline styles**: styles that are present in the `HTML in the style attribute`
