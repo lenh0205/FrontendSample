@@ -34,9 +34,8 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 
 ==================================================
 # useReducer:
-* -> dùng thay thế cho **useState**
-* -> khi mà **`state transitions complex`**, reply on the **`previous state`** (_need multiple updates_)
-* -> hoặc **`handle side-effects`** in response to state changes
+* Dùng thay thế cho useState
+* s/d với **`state transitions complex`** or reply on the **`previous state`**
 
 ===================================================
 # useCallback & useMemo
@@ -330,7 +329,7 @@ export default function App() {
 * nhưng những Provider chứa Global state (I18nProvider, SettingsProvider, UserProvider, ...) nên được đặt `at the top of your application`
 
 ## Replacement
-* **Redux** creates a `parallel store` from your App and `doesn't pass the values as props` to each and every component
+* **Redux** creates a **parallel store** from your App and `doesn't pass the values as props` to each and every component
 * -> Redux have the same performance problem exists in barebone Redux setup
 * -> which is why **`selector pattern`** from **react-redux** used to be very popular
 

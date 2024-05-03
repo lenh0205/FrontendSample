@@ -17,3 +17,10 @@
 # Write Library
 * Nếu có 1 biến làm flag, cần lưu ý case biến đó là dynamic (tức là biến đó có thể phụ thuộc vào những biến và điều kiện khác mà có giá trị khác nhau)
 * nên dùng `as const` để expose giá trị 1 cách immutable cho user dùng
+
+=================================================
+# Nên gom chung nhiều state thành 1 object để quản lý, lúc setState() sẽ cập nhật hết; hay tách riêng nhiều state nhỏ rồi setState() để cập nhật từng thằng
+* tốt nhất là nên tách riêng, viết hơi dài dòng 1 chút nhưng React có cơ chế reconciliation setState() từng field chỉ cập nhất đúng element đó nên performance tốt hơn
+* ta chỉ nên gom lại trong trường hợp các state có liên quan trực tiếp đến nhau
+* dù có cho là gom lại thành 1 object sẽ dễ mang đi sử dụng hơn, nhưng nghĩ kỹ thì ta muốn thường muốn rằng khi setState() thì ngay sau đó ta muốn sử dụng state được cập nhật luôn
+* thường thì khi ta cập nhật 1 object lớn thì ta không sử dụng ngay; Ví dụ: chỉ khi nào user bấm "tìm kiếm" thì ta mới cần lấy tất cả những trường đó để query database
