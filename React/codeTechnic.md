@@ -18,6 +18,16 @@
 * Nếu có 1 biến làm flag, cần lưu ý case biến đó là dynamic (tức là biến đó có thể phụ thuộc vào những biến và điều kiện khác mà có giá trị khác nhau)
 * nên dùng `as const` để expose giá trị 1 cách immutable cho user dùng
 
+===============================================
+# Reset 1 Component lại từ đầu
+* về cơ bản, ta sẽ cho Component 1 cái key, rồi sau đó để reset ta chỉ cần thay đổi cái key; cơ chế Recociliation của React sẽ tự động re-render + reset lại Component đó từ đầu
+```js
+const [key, setKey] = useState(Math.random());
+
+<ChildComponent key={key} />
+<button onClick={() => setKey(Math.random())}>reset</button>
+```
+
 =================================================
 # Nên gom chung nhiều state thành 1 object để quản lý, lúc setState() sẽ cập nhật hết; hay tách riêng nhiều state nhỏ rồi setState() để cập nhật từng thằng
 * tốt nhất là nên tách riêng, viết hơi dài dòng 1 chút nhưng React có cơ chế reconciliation setState() từng field chỉ cập nhất đúng element đó nên performance tốt hơn

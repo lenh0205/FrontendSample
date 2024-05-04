@@ -13,10 +13,6 @@
 * -> Workers may in turn **spawn new workers**, as long as **`those workers are hosted within the same origin as the parent page`** (_using **`Worker`**, **`WorkerGlobalScope`**, **`WorkerLocation`**, **`WorkerNavigator`**_)
 * -> workers can **make network requests** using the **`fetch() or XMLHttpRequest APIs`** (_although note that the `responseXML` attribute of `XMLHttpRequest` will always be null_)
 
-## Note
-* -> almost **`any code can be run inside a worker thread`**
-* -> but there're some **`exception`**: can't _directly manipulate the DOM_ from inside a worker, or use some _default methods and properties of the Window object_
-
 ## Data Communication
 * -> data is sent **`between workers and the main thread (JavaScript code that created it)`** via **a system of messages**
 * -> both sides **`send their messages`** using the **postMessage()** method, and **`respond to messages`** via the **onmessage event** handler 
@@ -28,9 +24,13 @@
 * -> are **`workers`** that are **utilized by a single script** 
 * -> this **`context`** is represented by a **DedicatedWorkerGlobalScope object**
 
+* _A dedicated worker is only accessible from the script that first spawned it_
+
 ## Shared workers 
 * -> are workers that can be **utilized by multiple scripts** running in different windows, IFrames, ..., as long as they are in the **`same domain as the worker`** 
-* -> they are a little more complex than dedicated workers — **`scripts must communicate via an active port`**`
+* -> they are a little more complex than dedicated workers — **`scripts must communicate via an active port`**
+
+* _shared workers can be accessed from multiple scripts_
 
 ## Service Workers 
 * -> essentially act as **proxy servers that sit between web applications, the browser, and the network (when available)**
@@ -42,13 +42,18 @@
 
 ===================================================
 # Worker global 'contexts' and 'functions'
-* -> workers run in **a different global context** than the **current window** (_the interface represents a window containing a DOM document_)
+* -> workers run in **a different global context** than the **current 'window'** (_the interface represents a window containing a DOM document_)
 * -> while _Window_ is **`not directly available to workers`**, many of the **`same methods`** are defined in a **`shared mixin`** - **WindowOrWorkerGlobalScope**
 * -> and made available to workers through their own **WorkerGlobalScope** derived contexts: **`DedicatedWorkerGlobalScope`**, **`SharedWorkerGlobalScope`**, **`ServiceWorkerGlobalScope`**
 
-* _using the **`window`** shortcut to get the **current global scope** (instead of **`self`**) within a Worker will return an error_
+## Note
+* -> almost **`any code can be run inside a worker thread`**
+* -> but there're some **`exception`**: can't _directly manipulate the DOM_ from inside a worker, or use some _default methods and properties of the Window object_
+* -> but can still use a large number of items available under **window**, including **`WebSockets`**, and data storage mechanisms like **`IndexedDB`**
+* -> using the **window** shortcut to get the **`current global scope`** (instead of **self**) within a Worker will return an error
 
-* some of the functions (a subset) that are common to **all workers and to the main thread** from **WindowOrWorkerGlobalScope** are:
+## common functions (a subset) available to all 'workers' and to the 'main thread'
+* _from **WindowOrWorkerGlobalScope** are:_
 * -> **`fetch()`**
 * -> **`atob()`**, **`btoa()`**
 * -> **`setInterval()`**, **`clearInterval()`**, **`setTimeout()`**, **`clearTimeout()`**
@@ -58,14 +63,23 @@
 * -> **`structuredClone()`**
 * -> **`requestAnimationFrame()`**, **`cancelAnimationFrame()`** (dedicated workers only)
 
-* function **only avaiable to workers**: 
+## function only avaiable to workers: 
 * -> **`importScripts()`**,
 * -> **`postMessage()`** (dedicated workers only)
 
 # Supported Web APIs
 * to see list Supported Web APIs: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API#:~:text=dedicated%20workers%20only).-,Supported%20Web%20APIs,-Note%3A%20If
 
-================================================
+==================================================================
+# Thread Safety
+* -> the **`Worker interface`** **spawns real OS-level threads**
+* -> mindful programmers may be **`concerned that concurrency`** can cause "interesting" effects in our code if we aren't careful
+* -> however, since **`web workers`** have **`carefully controlled communication points with other threads`**, it's actually very **hard to cause concurrency problems**
+* -> there's **`no access to non-threadsafe components or the DOM`**; and we **`have to pass specific data in and out of a thread`** through **`serialized objects`** 
+* => so we have to work really hard to cause problems in our code
+
+===================================================================
+
 # Web Worker interfaces
 * **Worker** - represents **`a running worker thread`**, allowing you to pass messages to the running worker code
 

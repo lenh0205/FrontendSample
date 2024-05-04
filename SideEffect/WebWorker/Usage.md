@@ -1,5 +1,0 @@
-
-# Web Workers API
-
-
-

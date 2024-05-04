@@ -210,3 +210,24 @@ https://comodosslstore.com/resources/a-ssl-certificate-file-extension-explanatio
 
 # microservices:
 https://microservices.io/index.html
+
+# Performance
+https://viblo.asia/tags/web-performance
+
+
+# Flux
+https://react.dev/learn/you-might-not-need-an-effect
+https://www.youtube.com/watch?v=Y-JtH75uXYw&list=PL1BztTYDF-QMPh8UW3xxk8C6uk2WVfUS3&index=48
+https://redux-saga.js.org/docs/About/
+https://medium.com/agency04/the-redux-saga-continues-implementing-your-own-redux-saga-like-middleware-f93a23ed840
+https://redux-saga.js.org/docs/advanced/Channels/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+https://blog.openreplay.com/redux-in-web-workers-off-main-thread-redux-reducers-and-middleware/
+https://medium.com/@pushplaybang/practical-react-understanding-async-with-redux-sagas-pt-1-1919becf4a29
+https://medium.com/byborg-engineering/redux-saga-race-conditions-1e3b6a22e9cd
+https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
+https://stackoverflow.com/questions/57228890/performing-heavy-functions-on-the-client-and-side-effects#:~:text=You%20can%20use%20redux%2Dsaga,your%20app%20will%20run%20ok.
+https://redux-saga.js.org/docs/introduction/SagaBackground/
+https://viblo.asia/p/gioi-thieu-ve-redux-saga-maGK7zjD5j2
+https://viblo.asia/p/useselector-mot-hook-cua-react-redux-ban-nen-biet-bJzKmqpYK9N
+https://redux-saga.js.org/docs/recipes/

@@ -32,3 +32,12 @@ const x = getRandomNumber(); // x is inferred as number
 // Nếu ta muốn all libraries "without typings" to be imported as "any"
 declare module '*';
 ```
+
+# Lỗi: UI của 1 cái popup giật lia lịa khi mở dropdown,...
+* -> rất có thể đây là lỗi liên quan đến **`thanh scroll của Browser`** (do **`thuộc tính overflow của 1 element`**); thanh scroll đột nhiên xuất hiện tại 1 thời điểm/ hành động nào đó
+* -> solution: ta cho element đó **`mặc định hiển thị thanh scroll luôn`**
+```css
+body {
+   overflow: scroll;
+}
+```
