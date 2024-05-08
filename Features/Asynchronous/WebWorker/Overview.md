@@ -97,3 +97,42 @@
 
 * **WorkerNavigator** - represents the **`identity and state`** of the **`user agent`** (the client).
 
+======================================================================
+# Content security policy
+* -> **`workers`** are considered to **have their own execution context**, **`distinct from the document that created them`**
+* -> for this reason they are, in general, not governed by the **content security policy** of the **`document (or parent worker) that created them`**
+* -> to specify a **`content security policy for the worker`**, **set a Content-Security-Policy response header** for the **`request which delivered the worker script itself`**
+
+* -> the **`exception`** to this is if the **worker script's origin is a globally unique identifier** (_for example, if its URL has a scheme of data or blob_)
+* -> in this case, the worker does **`inherit the CSP`** of the document or worker that created it.
+
+```js - Ex: suppose a document is served with the following header:
+Content-Security-Policy: script-src 'self'
+
+// -> this will prevent any scripts it includes from using "eval()"
+// => however, if the script constructs a worker, code running in the worker's context will be allowed to use "eval()"
+```
+
+=======================================================================
+Other types of workers
+In addition to dedicated and shared web workers, there are other types of workers available:
+
+ServiceWorkers essentially act as proxy servers that sit between web applications, and the browser and network (when available). They are intended to (amongst other things) enable the creation of effective offline experiences, intercepting network requests and taking appropriate action based on whether the network is available and updated assets reside on the server. They will also allow access to push notifications and background sync APIs.
+Audio Worklet provide the ability for direct scripted audio processing to be done in a worklet (a lightweight version of worker) context.
+
+=======================================================================
+Debugging worker threads
+Most browsers enable you to debug web workers in their JavaScript debuggers in exactly the same way as debugging the main thread! For example, both Firefox and Chrome list JavaScript source files for both the main thread and active worker threads, and all of these files can be opened to set breakpoints and logpoints.
+
+To learn how to debug web workers, see the documentation for each browser's JavaScript debugger:
+
+Chrome Sources panel
+Firefox JavaScript Debugger
+Functions and interfaces available in workers
+You can use most standard JavaScript features inside a web worker, including:
+
+Navigator
+fetch()
+Array, Date, Math, and String
+setTimeout() and setInterval()
+The main thing you can't do in a Worker is directly affect the parent page. This includes manipulating the DOM and using that page's objects. You have to do it indirectly, by sending a message back to the main script via DedicatedWorkerGlobalScope.postMessage, then doing the changes in event handler.

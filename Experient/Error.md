@@ -33,7 +33,14 @@ const x = getRandomNumber(); // x is inferred as number
 declare module '*';
 ```
 
-# Lỗi: UI của 1 cái popup giật lia lịa khi mở dropdown,...
+# Typescript - Lỗi: Variable 'arr' implicitly has an 'any[]' type
+* ta chỉ cần khai báo nó 1 cách explicit là được
+```js
+const arr: any[] = [];
+```
+
+=======================================================================
+# CSS - Lỗi: UI của 1 cái popup giật lia lịa khi mở dropdown,...
 * -> rất có thể đây là lỗi liên quan đến **`thanh scroll của Browser`** (do **`thuộc tính overflow của 1 element`**); thanh scroll đột nhiên xuất hiện tại 1 thời điểm/ hành động nào đó
 * -> solution: ta cho element đó **`mặc định hiển thị thanh scroll luôn`**
 ```css
@@ -41,3 +48,4 @@ body {
    overflow: scroll;
 }
 ```
+

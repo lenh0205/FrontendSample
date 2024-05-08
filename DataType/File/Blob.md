@@ -32,15 +32,13 @@ let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
 ```
 
 ## blobParts
-* is **`an iterable object (such as Array) of Blob/BufferSource/String values`**
-* -> _ArrayBuffers, TypedArrays, DataViews, Blobs, strings_
-* -> strings should be well-formed Unicode, and lone surrogates are sanitized (_can use `String.prototype.toWellFormed()` algorithm_)
+* is **`an iterable object`** (such as Array) of **Blob/BufferSource/String values**
+* -> **`ArrayBuffers`**, **`TypedArrays`**, **`DataViews`**, **`Blobs`**, **`strings`**
+* -> **`strings`** should be _well-formed Unicode_, and _lone surrogates are sanitized_ (_can use **String.prototype.toWellFormed()** algorithm_)
 
 ## "options" object:
 * -> **type** – **`Blob type`**, usually **`MIME-type`**, e.g. image/png,
 * -> **endings** – whether to transform end-of-line to make the Blob correspond to current OS newlines (\r\n or \n); By default, "transparent" (do nothing), but also can be "native" (transform)
-
-
 
 ## extract "Blob slices" 
 ```js
@@ -51,9 +49,9 @@ blob.slice([byteStart], [byteEnd], [contentType]);
 * -> **contentType** – the type of the new blob, by default the same as the source
 
 ====================================================
-# Blog as URL
-* -> **`can be easily used as a URL for <a>, <img> or other tags`**, to **show its contents**
-* -> thanks to **type**, we can also **`download/upload Blob objects`**, and the type naturally becomes **Content-Type** in network requests
+# Blob as URL
+* -> can be easily **used as a URL** for **`<a>, <img> or other tags`**, to **`show its contents`**
+* -> thanks to **`type`** (_of "options" object_), we can also **download/upload Blob objects**, and the type naturally becomes **Content-Type** in _network requests_
 
 * **URL.createObjectURL(blob)**
 * -> creates **`a unique URL`** in form **`blob:<origin>/<uuid>`**
@@ -61,14 +59,14 @@ blob.slice([byteStart], [byteEnd], [contentType]);
 * -> a generated URL is only **`valid within the current document, while it’s open`**
 * -> it allows to reference the Blob in any object that expects a URL (<img>, <a>, ...)
 
-* **Side Effect**: So if we create a URL, that **`Blob will hang in memory, even if not needed any more`**
-* -> while there’s a mapping for a Blob, the Blob itself _`resides in the memory`_. **the browser can’t free it**
-* -> the mapping is **`automatically cleared on document unload`**, so **`Blob objects are freed then`**
-* -> but if an app is long-living, then that doesn’t happen soon
+* **Side Effect**: so if we create a URL, that **Blob will hang in memory, even if not needed any more**
+* -> while there’s a mapping for a Blob, the Blob itself **`resides in the memory`**. **the browser can’t free it**
+* -> although the mapping is **`automatically cleared on document unload`**, so **`Blob objects are freed then`**
+* -> but if an app is **`long-living, then that doesn’t happen soon`**
 
 * **Solution**: **URL.revokeObjectURL(url)**
 * -> **`removes the reference from the internal mapping`**
-* -> thus allowing the Blob to be deleted (_if there are no other references_), and the memory to be freed
+* -> thus allowing the **Blob to be deleted** (_if there are no other references_), and the **`memory to be freed`**
 * => tất nhiên, as the mapping is removed, the URL doesn’t work any more
 
 ```html - download a dynamically-generated Blob 
@@ -98,12 +96,12 @@ URL.revokeObjectURL(link.href);
 
 =======================================================
 # Blob to base64
-* -> **`an alternative to URL.createObjectURL`** is to _convert a Blob_ into a **base64-encoded string**
-* -> _that encoding represents binary data_ as **`a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64`**
+* -> **an alternative to URL.createObjectURL** is to _convert a Blob_ into a **`base64-encoded string`**
+* -> that encoding **represents binary data** as **`a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64`**
 * -> and we can use this encoding in **data-urls**
 
 ## a "data url" 
-* -> has the form data: **`[<mediatype>][;base64],<data>`** 
+* -> has the form data: **[<mediatype>][;base64],<data>** 
 * -> we can use such urls everywhere, **`on par with "regular" urls`**
 * -> **`the browser will decode the string`** and show it
 

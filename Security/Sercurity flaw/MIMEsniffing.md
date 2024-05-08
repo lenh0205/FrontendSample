@@ -1,6 +1,15 @@
 # MIME sniffing
-* -> **MIME Sniffing** là technique được sử dụng bởi 1 số trình duyệt web (_`chủ yếu là Internet Explorer`_) giúp **`xác định định dạng tệp của một Content phản hồi`** to process that content
+* -> **`guessing the correct MIME type`** by looking at the **bytes of the resource**
+
+* -> là technique được sử dụng bởi 1 số trình duyệt web (_`chủ yếu là Internet Explorer`_) giúp **`xác định định dạng tệp của một Content phản hồi`** to process that content
 * -> Browsers can use _content sniffing / MIME sniffing_ to **`override the "Content-Type" header`** of a response to **`guess and process the data`** **`using an implicit content type`**
+
+## Mechanism
+* -> in the **absence of a MIME type** or in certain cases where **browsers believe they are incorrect**, browsers may perform **`MIME sniffing`** 
+* -> there are **security concerns** as some MIME types **represent executable content**; Servers can **`prevent MIME sniffing`** by sending the **X-Content-Type-Options header**
+
+* -> _Each browser `performs MIME sniffing differently` and under different circumstances_
+* -> _for example, Safari will look at the file extension in the URL if the sent MIME type is unsuitable_
 
 ## Advantage
 * Kỹ thuật này hữu ích trong trường hợp không có đủ thông tin như Content-Type cho một nội dung cụ thể, do đó có khả năng trình duyệt diễn giải nội dung không chính xác.
