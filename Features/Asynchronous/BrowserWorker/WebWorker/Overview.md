@@ -114,25 +114,28 @@ Content-Security-Policy: script-src 'self'
 ```
 
 =======================================================================
-Other types of workers
-In addition to dedicated and shared web workers, there are other types of workers available:
+# Other types of workers
+* _in addition to **`dedicated web worker`** and **`shared web workers`**, there are other types of workers available:_
 
-ServiceWorkers essentially act as proxy servers that sit between web applications, and the browser and network (when available). They are intended to (amongst other things) enable the creation of effective offline experiences, intercepting network requests and taking appropriate action based on whether the network is available and updated assets reside on the server. They will also allow access to push notifications and background sync APIs.
-Audio Worklet provide the ability for direct scripted audio processing to be done in a worklet (a lightweight version of worker) context.
+* -> **ServiceWorkers** essentially act as **proxy servers** that sit between **`web applications`**, and **`the browser`** and **`network`** (_when available_)
+* -> they are intended to (amongst other things) **enable the creation of effective offline experiences**
+* -> **`intercepting network requests`** and taking appropriate action based on whether the **`network is available`** and **`updated assets reside on the server`**
+* -> also **`allow access`** to **push notifications and background sync APIs**
+
+* -> **Audio Worklet** provide the ability for **`direct scripted audio processing`** to be done in a **worklet** (_a lightweight version of worker_) context.
 
 =======================================================================
-Debugging worker threads
-Most browsers enable you to debug web workers in their JavaScript debuggers in exactly the same way as debugging the main thread! For example, both Firefox and Chrome list JavaScript source files for both the main thread and active worker threads, and all of these files can be opened to set breakpoints and logpoints.
+# Debugging worker threads
+* -> most browsers enable you to **`debug web workers in their JavaScript debuggers`** in exactly **`the same way as debugging the main thread`**
+* -> _for example, both Firefox and Chrome list JavaScript source files for both the main thread and active worker threads, and all of these files can be opened to set breakpoints and logpoints_
 
 To learn how to debug web workers, see the documentation for each browser's JavaScript debugger:
 
 Chrome Sources panel
 Firefox JavaScript Debugger
-Functions and interfaces available in workers
-You can use most standard JavaScript features inside a web worker, including:
 
-Navigator
-fetch()
-Array, Date, Math, and String
-setTimeout() and setInterval()
-The main thing you can't do in a Worker is directly affect the parent page. This includes manipulating the DOM and using that page's objects. You have to do it indirectly, by sending a message back to the main script via DedicatedWorkerGlobalScope.postMessage, then doing the changes in event handler.
+=======================================================================
+# Functions and interfaces available in workers
+* -> _we can use **`most standard JavaScript features`** inside a web worker, including:_ **Navigator**, **fetch()**, **Array**, **Date**, **Math**, **String**, **setTimeout()** and **setInterval()**
+* -> the main thing we **`can't do in a Worker`** is **directly affect the parent page** (_includes **`manipulating the DOM`** and **`using that page's objects`**_)
+* -> we have to do it indirectly, by sending a message back to the main script via **`DedicatedWorkerGlobalScope.postMessage`**, then doing the changes in event handler
