@@ -39,6 +39,15 @@ declare module '*';
 const arr: any[] = [];
 ```
 
+# Typescript - This comparison appears to be unintentional because the types '...' and '...' have no overlap.ts(2367)
+* -> lỗi này thường xảy ra khi ta sử dụng toán tử **&&** để nối 2 **`condition`** với nhau; rất có thể ta đã bỏ condition **!==** trước condition **===**
+* -> chỉ cần đảo lại là được
+```js - VD:
+const display = mode == enumUploaderMode.DigitalSignVBDen && mode !== enumUploaderMode.DownloadOnly;
+// đổi lại thành:
+const display = mode == mode !== enumUploaderMode.DownloadOnly && enumUploaderMode.DigitalSignVBDen;
+```
+
 =======================================================================
 # CSS - Lỗi: UI của 1 cái popup giật lia lịa khi mở dropdown,...
 * -> rất có thể đây là lỗi liên quan đến **`thanh scroll của Browser`** (do **`thuộc tính overflow của 1 element`**); thanh scroll đột nhiên xuất hiện tại 1 thời điểm/ hành động nào đó
