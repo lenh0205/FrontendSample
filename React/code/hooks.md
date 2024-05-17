@@ -24,6 +24,9 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 * -> vì nếu ta setState() 1 object trong khi chỉ update 1 property của nó, thì React sẽ update tất cả React element s/d property của object đó
 * -> những hook có [dependecies] thì việc phụ thuộc vào những giá trị cụ thể cũng dễ dàng hơn
 
+* -> trong hầu hết các trường hợp thì ta sẽ giữ state trong useState(); nhưng trong trường hợp hợp là State của 1 Provider nằm ở cấp cao nhất của ứng dụng thì điều này sẽ không cần
+* -> trong trường hợp này, update trực tiếp State mà không cần phải re-render lại sẽ đơn giản và hiệu quả hơn
+
 ===================================================
 # useEffect
 * -> thường dùng để quản lý **Effect** vì nó khác function bình thường ở chỗ nó có **`clean-up function`**

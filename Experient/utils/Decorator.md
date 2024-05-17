@@ -35,6 +35,9 @@ function cachingDecorator(func) {
 calc = cachingDecorator(calc);
 console.log(calc(1)) // Calc with 1 // 1
 console.log(calc(1)) // 1
+
+// như ta thấy decorator nhận vào 1 function và trả về 1 function; 
+// điều đặc biệt là function này luôn trỏ về cùng 1 biến "cache" và nhận tham số giống y như function đầu vào
 ```
 
 ============================================================
@@ -206,16 +209,16 @@ worker.calc(1);  // 1
 * -> the **Parameters<T>** of Typescript returns the **`type of a function’s arguments`** in form of **`a tuple`**
 
 ```js
-const memoize = <F extends (...args: any) => any> (
-		f: (...args: Parameters<F>) => ReturnType<F>
-	) => {
+const memoize = <F extends (...args: any) => any>(f: (...args: Parameters<F>) => ReturnType<F>) => {
     const cache : Record<string, ReturnType<F>>= {};
+
     return (...args: Parameters<F>) => {
       const argString = JSON.stringify(args);
       cache[argString] = cache[argString] || f(...args);
       return cache[argString];
   };
 };
+
 const getAverage = (grades: number[]) => {
 	return grades.length ? grades.reduce((acc, grade) => grade + acc, 0) / grades.length : 0;
 } 

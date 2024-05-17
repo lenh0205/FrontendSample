@@ -278,19 +278,23 @@ class App extends React.Component {
         super(props);
  
         // Gets the data item with -> "field1" = 1
-        singleKeyStore.byKey(1).then(
-            (dataItem) => { /* Process the "dataItem" here */ },
-            (error) => { /* Handle the "error" here */ }
-        );
+        singleKeyStore
+            .byKey(1)
+            .then(
+                (dataItem) => { /* Process the "dataItem" here */ },
+                (error) => { /* Handle the "error" here */ }
+            );
  
         // Gets the data item with -> "field1" && "field2" = 1
-        compositeKeyStore.byKey({
+        compositeKeyStore
+            .byKey({
             field1: 1,
             field2: 1
-        }).then(
-            (dataItem) => { /* Process the "dataItem" here */ },
-            (error) => { /* Handle the "error" here */ }
-        );
+            })
+            .then(
+                (dataItem) => { /* Process the "dataItem" here */ },
+                (error) => { /* Handle the "error" here */ }
+            );
     }
     // ...
 }
