@@ -215,6 +215,9 @@ https://microservices.io/index.html
 https://viblo.asia/tags/web-performance
 
 
+# FormData
+https://dotnettutorials.net/lesson/fromform-in-asp-net-core-web-api/
+
 # Flux
 https://react.dev/learn/you-might-not-need-an-effect
 https://www.youtube.com/watch?v=Y-JtH75uXYw&list=PL1BztTYDF-QMPh8UW3xxk8C6uk2WVfUS3&index=48
@@ -231,3 +234,27 @@ https://redux-saga.js.org/docs/introduction/SagaBackground/
 https://viblo.asia/p/gioi-thieu-ve-redux-saga-maGK7zjD5j2
 https://viblo.asia/p/useselector-mot-hook-cua-react-redux-ban-nen-biet-bJzKmqpYK9N
 https://redux-saga.js.org/docs/recipes/
+
+# Authen
+https://openid.net/developers/how-connect-works/
+https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth
+https://auth0.com/docs/get-started/apis/scopes
+https://auth0.com/docs/authenticate/protocols/oauth
+https://developer.auth0.com/resources/code-samples/full-stack/hello-world/basic-role-based-access-control/spa/react-v17-typescript-with-react-router-5/aspnet-core-csharp
+https://auth0.com/docs/manage-users/access-control/rbac
+https://auth0.com/intro-to-iam
+
+# ASP Identity
+https://xuanthulab.net/
+https://bluerhinolabs.medium.com/customize-login-page-on-asp-net-core-web-application-73cc9574da32asp-net-razor-su-dung-identity-de-tao-user-xac-thuc-dang-nhap-website.html
+https://learn.microsoft.com/en-us/answers/questions/1278996/asp-net-mvc-core-account-pages-not-showing-default
+https://learn.microsoft.com/en-us/answers/questions/561718/asp-net-core-identity-is-not-working-as-supposed-i
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-7.0&tabs=visual-studio
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-8.0
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-8.0&tabs=visual-studio
+https://stackoverflow.com/questions/50802781/where-are-the-login-and-register-pages-in-an-aspnet-core-scaffolded-app
+https://devblogs.microsoft.com/dotnet/aspnetcore-2-1-identity-ui/
+
+# Razor
+https://www.learnrazorpages.com/razor-pages/routing
+https://www.c-sharpcorner.com/article/learn-about-layout-view-in-razor-pages/
