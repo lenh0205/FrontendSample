@@ -262,43 +262,32 @@ class App extends React.Component {
 
 ```js - "key" property and "byKey" method in "CustomStore" component
 const singleKeyStore = new CustomStore({
-    key: "field1", // The key consists of a single data field
+    key: "field1", // "key" property - this key consists of a single data field
     // ...
 });
+singleKeyStore
+    .byKey(1) // use "byKey" method - to Gets the data item with "field1" (specific by "key" property) = 1
+    .then(
+        (dataItem) => { /* Process the "dataItem" here */ },
+        (error) => { /* Handle the "error" here */ }
+    );
+
 const compositeKeyStore = new CustomStore({
-    key: [ "field1", "field2" ], // The key consists of several data fields
-    // ...
-    byKey: (key) => {
+    key: [ "field1", "field2" ], // this key consists of several data fields
+    byKey: (key) => { // use "bykey" property - to custom implement of "byKey" method
         return fetch("http://mydomain.com/MyDataService?id=" + key);
     }
-});
- 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
- 
-        // Gets the data item with -> "field1" = 1
-        singleKeyStore
-            .byKey(1)
-            .then(
-                (dataItem) => { /* Process the "dataItem" here */ },
-                (error) => { /* Handle the "error" here */ }
-            );
- 
-        // Gets the data item with -> "field1" && "field2" = 1
-        compositeKeyStore
-            .byKey({
-            field1: 1,
-            field2: 1
-            })
-            .then(
-                (dataItem) => { /* Process the "dataItem" here */ },
-                (error) => { /* Handle the "error" here */ }
-            );
-    }
     // ...
-}
-export default App;
+});
+compositeKeyStore
+    .byKey({ // Gets the data item with both "field1" and "field2" being equal to 1
+        field1: 1,
+        field2: 1
+    })
+    .then(
+        (dataItem) => { /* Process the "dataItem" here */ },
+        (error) => { /* Handle the "error" here */ }
+    );
 ```
 
 ```js - "byKey" property of "CustomStore" component
