@@ -14,6 +14,7 @@ const DataGridCapNhatDanhMucHoSo = ({ ...props }) => {
     }, [props.isRefresh])
 
     const customStoreConfig = {
+        key: ["vanBanDenID", "soVanBan"], // nết ta muốn StateStoring lưu trường nào vào session khi select row
         load: async (loadOptions: any) => {
             let arrayFilter = loadOptions.filter;
             let newFilter = [];

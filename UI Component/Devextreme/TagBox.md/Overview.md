@@ -4,7 +4,9 @@
 * -> phải có trường **key** và phải để nó trong **CustomStore**, không để trong **DataSource** (_nếu không có thể gây không thể chọn hoặc không thể xoá_)
 * -> TagBox chỉ **`bắt đầu lazy load khi ta click vào`**
 * -> để hiển thị giá trị mặc định cho tagbox, ta sẽ cần truyền 1 array của **object gồm đẩy đủ 2 trường** định nghĩa trong **displayExpr** và **valueExpr** cho **`"value" property của TagBox`**
-* -> nhưng mà khi ta chọn item thì **onValueChanged** chỉ trả về 1 array gồm giá trị của **valueExpr** (_không phải object gồm 2 trường_) của item mới chọn và những object mà ta đã đặt làm giá trị mặc định
+* -> nhưng mà khi ta chọn item thì **onValueChanged** chỉ trả về 1 array gồm giá trị của **valueExpr** (_không phải object gồm 2 trường_) đối với item mới chọn và object đối với item ta đặt làm mặc định
+* -> để **`load remote item`**, từ version **`18.1`** ta sẽ s/d property **filter** của **`loadOptions`** thay vì
+**byKey** của CustomStore
 
 ```js
 export default function App() {
@@ -35,12 +37,6 @@ export default function App() {
           return { data: [] };
         }
       },
-      byKey: async (...args) => {
-        console.log("bykey", args)
-        // const res = await instance.post("https://localhost:7060/api/Student/GetByIds", key);
-        // const res = await instance.get(`https://localhost:7060/api/Student/GetByIdTestPagination?Id=${key}`);
-        // return res;
-      }
     })
   }), [])
 
@@ -68,63 +64,5 @@ export default function App() {
       width="100%"
     />
     <button onClick={() => addItems()}>Add</button>
-   
-    <div style={{ padding: "50px" }} />
-    <Test />
-  </div>;
 }
-
-const Test = () => {
-  let raw = 3;
-  let [value, setValue] = useState(3);
-  let [refer, setRefer] = useState([3]);
-  let [refer2, setRefer2] = useState([3]);
-
-  const log = () => {
-    console.log("log", { raw, value, refer, refer2 });
-  }
-  const logCallback = useCallback(() => {
-    console.log("logCallback", { raw, value, refer, refer2 });
-  }, [])
-
-  return (
-    <>
-      <button onClick={() => {
-        raw += 1;
-        setValue(prev => prev + 1);
-        setRefer(prev => [...prev, 1]);
-        refer2.push(1); setRefer2(refer2);
-      }}>
-        Change
-      </button>
-      <button onClick={() => {
-        raw += 1;
-        value += 1;
-        refer = [...refer, 1]
-        refer2.push(1);
-      }}>
-        Mutate
-      </button>
-
-      <button onClick={() => logCallback()}>Log callback</button>
-      <button onClick={() => log()}>Log normal</button>
-
-      <div>raw: {raw}</div>
-      <div>value: {value}</div>
-      <div>refer: {refer.toString()}</div>
-      <div>refer2: {refer2.toString()}</div>
-    </>
-  )
-}
-// initial UI:   raw: 3   value: 3   refer: 3   refer2: 3
-
-// ------> case 1:
-// click "Change" -> UI display:   raw: 3   value: 4   refer: 3,1   refer2: 3,1
-// click "Log callback" -> console: logCallback {raw: 4, value: 3, refer: [3], refer2: [3,1]
-// click "Log normal" -> console: log {raw: 3, value: 4, refer: [3,1], refer2: [3,1]
-
-// ------> case 2:
-// click "Mutate" -> UI display:   raw: 3   value: 3   refer: 3   refer2: 3
-// click "Log callback" -> console: logCallback {raw: 4, value: 4, refer: [3,1], refer2: [3,1]}
-// click "Log normal" -> console: log {raw: 4, value: 4, refer: [3, 1], refer2: [3, 1]}
 ```
