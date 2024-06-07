@@ -3,8 +3,8 @@
 * -> components with **many state updates spread across many event handlers** can get **`overwhelming`**
 * -> for these cases, we can **consolidate all the state update logic outside our component in a single function**, called **`a reducer`**
 
-* _nói chung là khi component grows, lượng `state logic bị rải rác khắp nơi`; và ta có thể move tất cả tất cả 1 function duy nhất nằm ngoài component_
-* _this decreases the indentation level and can make our code **easier to read**_
+* _nói chung là khi component grows, lượng `state logic bị rải rác khắp nơi`; và ta có thể move tất cả `state update logic` vào 1 function duy nhất nằm ngoài component_
+* _this keep the `event handlers` short and concise; decreases the indentation level and can make our code **easier to read**_
 
 ===========================================================================
 

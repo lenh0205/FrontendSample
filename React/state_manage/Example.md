@@ -30,6 +30,8 @@ updatePerson(draft => {
 * -> ta sẽ gặp trường hợp là **`cùng 1 biến nhưng giá trị`** cho state của Component và giá trị mà funtion trong useCallback() tham chiếu tới **`là khác nhau`**
 * -> đây là do **Closesure**, cũng như **state của React là dạng tham chiếu** (_dù giá trị nó giữ là primitive type_)
 
+* _nói chung khi sử dụng useCallback(), ta cần lưu ý đến những `function` và `variable` bên trong nó, có trường hợp `function` bên trong nó lại đang tham chiếu đến 1 variable nằm ở 1 component khác_
+
 ```js 
 const Test = () => {
   let raw = 3;

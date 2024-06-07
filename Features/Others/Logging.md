@@ -1,8 +1,4 @@
-
-
 ========================================================
-# Other types of "console."
-
 ## console.group - console.groupCollapsed
 * -> create a **`group of related log messages`** together in the console
 * -> _**`groupCollapsed`** thì khi log ra group sẽ được đóng chỉ hiện mỗi tiêu đề, cần user click vào để mở ra_
@@ -30,6 +26,7 @@ const loadingTime = (endLoadingTime - startLoadingTime) / 1000;
 console.log(`%cEnd Loading at %c${loadingTime} seconds`, "color: blue;", "color: purple;")
 ```
 
+========================================================
 ## console.time & console.timeEnd
 * -> **`measure the time taken`** by a block of code to execute
 ```js
@@ -42,6 +39,7 @@ for (let i = 0; i < 1000000; i++) {
 console.timeEnd("timer");
 ```
 
+========================================================
 ## console.trace
 * -> outputs **`a stack trace`** - visualize the **`call stack leading to the current execution point`**
 * _nói chung là nó show callstack information (`function names, location in the code`) tại thời điểm `console.trace()` được gọi_
@@ -67,6 +65,7 @@ foo @ (index):3
 */
 ```
 
+========================================================
 ## console.count & console.countReset
 * -> **console.count** allows to **`count the number of times a particular piece of code is executed`**
 * -> _use **console.countReset** to **`reset the count`**_
@@ -98,6 +97,7 @@ call_greet: 1
 */
 ```
 
+========================================================
 ## console.table 
 * -> display **`tabular data`** in the console - takes an array or an object as input and presents it as a table
 ```js
@@ -122,6 +122,7 @@ console.table(users);
 */
 ```
 
+========================================================
 ## console.assert
 * -> assert whether a condition is true or false; if the **`condition is false, it will log an error message to the console`**
 ```js
