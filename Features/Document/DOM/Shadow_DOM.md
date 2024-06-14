@@ -1,0 +1,14 @@
+https://webpack.js.org/loaders/style-loader/
+https://webpack.js.org/loaders/css-loader/
+https://stackoverflow.com/questions/60659473/inject-css-styles-to-shadow-root-via-webpack
+https://gourav.io/blog/render-react#render-react-element-with-shadow-dom-approach
+https://developer.mozilla.org/en-US/docs/Web/CSS/@scope
+https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM
+https://www.w3.org/TR/css-cascade-6/#scoped-styles
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scoping
+https://drafts.csswg.org/css-cascade-6/#scoped-styles
+https://developer.mozilla.org/en-US/docs/Web/CSS/@import
+https://css-tricks.com/playing-shadow-dom/
+https://css-tricks.com/saving-the-day-with-scoped-css/
+https://css.oddbird.net/scope/
+https://stackoverflow.com/questions/47413520/restrict-css-applying-on-a-particular-div
