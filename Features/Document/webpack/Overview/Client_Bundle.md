@@ -1,11 +1,12 @@
 > Tại sao phát triển 1 trang web chạy trên **Browser (client)** lại phải cần bundle ?
-> thằng npm quản lý mọi thứ nó giúp ta require , cũng như chạy các file .exe của package như 1 script mà không cần chỉ rõ đường dẫn trong node_modules
 
 > những vấn đề chính ta gặp phải khi phát triển `web Client` với javascript bao gồm: **Package version**, **project package sharing**, **global script access**, **File System Access**, **Module using with Client**
 > nói chung là ta **`cần sức mạnh của Server`** để tối ưu quá trình phát triển web (_giải quyết những vần đề trên_) rồi tạo ra sản phẩm chạy trên Client; việc này bao gồm sử dụng **npm**, **NodeJS modules** , **Module Bundler**
 
+> thằng **npm** quản lý mọi thứ nó giúp ta require , cũng như chạy các file .exe của package như 1 script mà không cần chỉ rõ đường dẫn trong node_modules
 > **NodeJS modules** - là dành cho việc **`Development`**, giúp developer viết code dễ dàng, rõ ràng hơn cũng như hosting chạy thử khi Dev (_vì **`require()`** chỉ được hiểu bởi **Server, not Browser**_)
 > **Module Bundler** chính là thằng nằm giữa quá trình **`Development`** và **`Production`** chạy trên Client; tức _chuyển đổi `1 sản phẩm của developer` sang `1 sản phẩm chạy trên Browser`_
+> Vậy nên quá trình **`Development`** ta có thể làm gì cũng được, miễn là có những công cụ chuyển đổi phù hợp (Babel, Transpiler,...)
 
 =========================================================================
 # Basic classic web:
