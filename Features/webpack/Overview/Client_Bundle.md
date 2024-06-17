@@ -126,9 +126,14 @@ console.log(moment().startOf('day').fromNow());
 * ->  Javascript được tạo ra với mục đích **`chỉ chạy trên trình duyệt`**, mà **không có quyền truy cập đến các file hệ thống** nằm trên máy tính của người dùng (vì lý do **`bảo mật`**)
 * => ban đầu việc tổ chức code javascript thường được thực hiện bằng cách **`load từng source một vào các biến global`** 
 * _VD: toàn bộ file `moment.min.js` được load vào file HTML được định nghĩa qua 1 biến global là **`moment`**_
-* -> và vì biến này là **global** nên có thể **truy cập ở bất kỳ script nào load sau nó** mà **`không quan tâm đến quyền truy cập`** (_cũng như việc s/d biến global có 1 số bất cập khi web dev_)
+* -> và vì biến này là **global** nên có thể **truy cập ở bất kỳ script nào load sau nó** mà **`không quan tâm đến quyền truy cập`** 
 
-* -> Ngoài ra, khi ta **`sử dụng 'npm'`** khá bất tiện khi ta **cần vào node_modules để tìm đường dẫn** của từng package và thêm thủ công vào _thẻ script_ trong index.html để **`sử dụng globally`**
+* -> Ngoài ra việc quản lý Javascript project với **implicit dependecies between "script" tag** (**`sử dụng 1 biến global`**) có rất nhiều bất cập:
+* -> it is **`not immediately apparent`** that the **script depends on an external library** 
+* -> if **a dependency is missing, or included in the wrong order**, the application will **`not function properly`**
+* -> if **a dependency is included but not used**, the browser will be **`forced to download unnecessary code`**
+
+* -> Thêm vào đó, khi ta **`sử dụng 'npm'`** khá bất tiện khi ta **cần vào node_modules để tìm đường dẫn** của từng package và thêm thủ công vào _thẻ script_ trong index.html để **`sử dụng globally`**
 
 ## CommonJS (2009) - NodeJS - server modules manage
 * -> định nghĩa ra một hệ sinh thái cho Javascript mà **`không phụ thuộc vào trình duyệt web`**
