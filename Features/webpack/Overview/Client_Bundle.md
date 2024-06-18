@@ -131,7 +131,6 @@ console.log(moment().startOf('day').fromNow());
 * -> Ngoài ra việc quản lý Javascript project với **implicit dependecies between "script" tag** (**`sử dụng 1 biến global`**) có rất nhiều bất cập:
 * -> it is **`not immediately apparent`** that the **script depends on an external library** 
 * -> if **a dependency is missing, or included in the wrong order**, the application will **`not function properly`**
-* -> if **a dependency is included but not used**, the browser will be **`forced to download unnecessary code`**
 
 * -> Thêm vào đó, khi ta **`sử dụng 'npm'`** khá bất tiện khi ta **cần vào node_modules để tìm đường dẫn** của từng package và thêm thủ công vào _thẻ script_ trong index.html để **`sử dụng globally`**
 
