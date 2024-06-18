@@ -18,7 +18,7 @@
 
 * -> install `lodash` library locally: _`npm install --save lodash`_
 * -> chỉnh sửa file `index.js`, giờ ta sẽ **import library in our script**
-* -> chỉnh sửa file `index.html`, bỏ `lodash script tag` và modify the other `script tag` to load the bundle
+* -> chỉnh sửa file `index.html`, bỏ `lodash script tag` và modify the other `script tag` to load the bundle (mặc định là **main.js**)
 * _chỗ này tạm thời ta sẽ phải tự tạo `index.html` trong `dist` và edit nó manually; sau này ta sẽ để thư mục `dist` rỗng và để webpack tự generate tất cả các files ta cần_
 
 * -> giờ ta chạy **npx webpack** 
