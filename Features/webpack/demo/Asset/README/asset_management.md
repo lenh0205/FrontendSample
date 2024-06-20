@@ -168,9 +168,77 @@ const path = require('path');
 ```
 
 ## Step
-* -> ta sẽ add 2 file data `src/data.xml` và `src/data.csv`
+* -> ta sẽ add 2 file data `src/data.xml` và `src/data.csv` 
+* -> **import default** chúng vào dự án
 * -> re-run the `npm run build` command and open `dist/index.html`; we should see our imported data being logged to the console
 
+## Customize parser of JSON modules
+* -> it's possible to import any **toml**, **yaml** or **json5** files as **`a JSON module`** by using a **custom parser** instead of **`a specific webpack loader`**
+* -> (_`npm install toml yamljs json5 --save-dev`_)
 
 
+```js - webpack.config.js
+const toml = require('toml');
+const yaml = require('yamljs');
+const json5 = require('json5');
+
+module.exports = {
+    // .....
+    module: {
+        rules: [
+            // ....
+            {
+                test: /\.toml$/i,
+                type: 'json',
+                parser: {
+                parse: toml.parse,
+                },
+            },
+            {
+                test: /\.yaml$/i,
+                type: 'json',
+                parser: {
+                parse: yaml.parse,
+                },
+            },
+            {
+                test: /\.json5$/i,
+                type: 'json',
+                parser: {
+                parse: json5.parse,
+                },
+            },
+        ],
+    },
+};
+```
+
+### Step:
+* -> tạo các file `src/data.toml`, `src/data.yaml` and `src/data.json5` 
+* -> import và sửa `src/index.js` rồi `npm run build`; ta nên thấy những data ta import hiện ra cửa sổ console
+
+======================================================================
+# Global Assets
+* -> when we load the assets like above, it allows us to **group modules and assets** in a **`more intuitive way`**
+* ->  instead of **`relying on a global /assets directory`** that contains everything, we can **group assets with the code that uses them**
+
+* _tức là nhờ việc quản lý dependency của webpack, khi bundle ta có thể tổ chức lại ouput - để các `file js, css mà phụ thuộc nhau` vào chung 1 thư mục_
+* => this makes our code **a lot more portable** as everything that is **`closely coupled now lives together`**
+
+* -> however, in case we like the old way or have some `assets that are shared between multiple components` (views, templates, modules, etc.). 
+* -> it's **still possible to store these assets in a base directory** and even **use aliasing to make them easier to import**
+
+
+```r
+|– /components
+|  |– /my-component
+|  |  |– index.jsx
+|  |  |– index.css
+|  |  |– icon.svg
+|  |  |– img.png
+
+
+// -> when we want to use "/my-component" in another project, we can just copy or move it easily
+// -> as long as we have installed any "external dependencies" and our configuration has the "same loaders defined", we should be good to go
+```
 
