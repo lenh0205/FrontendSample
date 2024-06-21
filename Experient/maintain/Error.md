@@ -58,3 +58,10 @@ body {
 }
 ```
 
+========================================================================
+# Lỗi "Minified React error #310; use the non-minified dev environment" trên production và "Rendered more hooks than during the previous render" trên development
+* -> ta cần đảm bảo **Only Call Hooks at the Top Level** -không call nó trong `loops, conditions, or nested functions`
+* -> đảm bảo **Only Call Hooks from React Functions** - không call Hooks from regular JavaScript functions
+
+* -> nếu ta kiểm tra hết mà vẫn bị lỗi thì có thể là do xung đột các thư viện mà ta import; VD: `useTranslate` ta thử bỏ nó ra xem còn bị lỗi không
+* -> hoặc 1 số cấu hình lạ của thằng devextreme, thử bỏ đi xem 
