@@ -46,9 +46,9 @@ module.exports = {
 * -> the **dependOn** option allows to **`share the modules between the chunks`**
 
 * -> if we **`use multiple entry points on a single HTML page`**, **optimization.runtimeChunk: 'single'** is needed too, otherwise we could get into trouble
-* -> although using multiple entry points per page is allowed in webpack
-* -> it should be avoided when possible in favor of **an entry point with multiple imports**: **`entry: { page: ['./analytics', './app'] }`**
-* ->. This results in a better optimization and consistent execution order when using async script tags.
+* -> although using **`multiple entry points per page is allowed in webpack`**; it should be avoided when possible 
+* -> in favor of **an entry point with multiple imports**: **`entry: { page: ['./analytics', './app'] }`**
+* -> this results in a _better optimization_ and _consistent execution_ order when using **async** script tags
 
 ```js - webpack.config.js
 const path = require('path');
@@ -75,5 +75,89 @@ module.exports = {
     },
 };
 ```
+* -> when we run `npm run build`, it will generate `runtime.bundle.js` (do "optimization.runtimeChunk" option), `shared.bundle.js`, `index.bundle.js`, `another.bundle.js`
 
-* -> when we run `npm run build`, it will generate `runtime.bundle.js`, `shared.bundle.js`, `index.bundle.js`, `another.bundle.js`
+## SplitChunksPlugin
+* -> the **SplitChunksPlugin** allows us to **`extract common dependencies into an existing entry chunk or an entirely new chunk`**
+* -> however, it's important to note that **`common dependencies are only extracted into a separate chunk`** if they **meet the size `thresholds` specified by webpack**
+
+* -> with the _`optimization.splitChunks`_ configuration option in place, we should now see **the duplicate dependency removed from** our `index.bundle.js` and `another.bundle.js`
+* -> the plugin should notice that we've separated `lodash` out to **a separate chunk** and **remove the dead weight from our main bundle**
+
+* _some other useful plugins and loaders provided by the community for splitting code like: **mini-css-extract-plugin** - for **`splitting CSS`** out from the main application_ 
+
+```js - webpack.config.js
+const path = require('path');
+
+module.exports = {
+    mode: 'development',
+    entry: {
+        index: './src/index.js',
+        another: './src/another-module.js',
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+    optimization: { // this one
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
+};
+```
+* -> sau khi run `npm run build` nó sẽ tạo ra file `index.bundle.js`, `another.bundle.js`, `vendors-node_modules_lodash_lodash_js.bundle.js`
+
+===================================================================
+# Dynamic Imports
+* -> **`2 similar techniques are supported by webpack`** when it comes to **dynamic code splitting**
+* -> the first and recommended approach is to use the **import()** syntax that conforms to the **`ECMAScript proposal for dynamic imports`**
+* -> the legacy, webpack-specific approach is to use **require.ensure**
+
+```js - webpack.config.js
+ const path = require('path');
+
+module.exports = {
+    mode: 'development',
+    entry: {
+        index: './src/index.js',
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+};
+```
+
+## Note
+* -> we need **default** (_`import('lodash').then(({ default: _ }) => {...}`_) 
+* -> because since **webpack 4**, when **`importing a CommonJS module`**, the import will **no longer resolve to the value of `module.exports`**
+* -> it will instead **create an artificial namespace object** for the **`CommonJS module`**
+
+* -> as **`import()`** returns a **promise**, it can be used with **`async/await`** hoặc **`.then()`**
+* -> it is possible to provide **a dynamic expression** to **`import()`** when we might need to **``import specific module based on a computed variable later`**
+```js - Ex:
+// imagine we had a method to get "language" from cookies or other storage
+// we can only get it at "runtime"
+const language = detectVisitorLanguage();
+
+import(`./locale/${language}.json`).then((module) => {
+  // do something with the translations
+});
+// => this will cause every .json file in the ./locale directory to be bundled into the new chunk
+```
+
+## Step
+* -> xoá file `another-module.js`;
+* -> sửa file `index.js` thay vì **statically importing** 'lodash', sửa thành **dynamic importing to separate a chunk**
+* -> sau khi chạy `npm run dev`, ta nên thấy `lodash` separated out to a separate bundle
+
+===================================================================
+# Prefetching/Preloading modules
+* -> webpack 4.6.0+ adds support for prefetching and preloading.
+
+Using these inline directives while declaring your imports allows webpack to output “Resource Hint” which tells the browser that for:
+
+prefetch: resource is probably needed for some navigation in the future
+preload: resource will also be needed during the current navigation
+An example of this is having a HomePage component, which renders a LoginButton component which then on demand loads a LoginModal component after being clicked.
