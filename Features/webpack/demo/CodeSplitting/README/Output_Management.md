@@ -6,7 +6,25 @@
 * -> However, a few plugins exist that will make this process much easier to manage.
 
 ## Preparation step
-* -> 
+* -> tạo file `src/print.js` và import nó vào file `src/index.js`  
+* -> chỉnh lại lại config, ta thêm `src/print.js` như 1 entry point mới; chỉnh sửa `output` để dynamically gen `bundle name` based on `entry point name`
+* -> chỉnh sửa `dist/html` để có 2 `script tag` link đến `./print.bundle.js` và `./index.bundle.js` 
+
+
+```js - webpack.config.js
+const path = require('path');
+
+module.exports = {
+    entry: {
+        index: './src/index.js',
+        print: './src/print.js',
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+};
+```
 
 ## Problem
 * -> if we **`changed the name of one of our entry points`**, or even **`added a new one`**; the **`generated bundles would be renamed on a build`**, but **our index.html file would still reference the old names**

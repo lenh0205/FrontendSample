@@ -109,6 +109,7 @@ Uncaught ReferenceError: cosnole is not defined
 * => if our page expects to find the bundle files on a different path, we can change this with the **devMiddleware.publicPath** option in the **`dev server's configuration`**
 
 * -> the **optimization.runtimeChunk: 'single'** was added because we have **`more than one entrypoint on a single HTML page`** (_missing it can cause problem_)
+* _`option` này sẽ tạo 1 file là `runtime.bundle.js` nếu "output" option là "[name].bundle.js_
 
 ```js - webpack.config.js
 const path = require('path');
@@ -157,6 +158,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // .....
+    devServer: {
+     static: './dist',
+   },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -167,7 +171,9 @@ module.exports = {
 ```
 
 ### Dựng Express server
-* -> tạo file `server.js` để tạo `expressjs serve` tại root; thêm `npm script` để chạy server
+* -> tạo file `server.js` tại root sử dụng `expressjs` để tạo server và import **webpack-dev-middleware** làm middleware; 
+* -> thêm `npm script` để chạy server; rồi chạy `npm run server`
+* -> nó sẽ chạy 1 `express server` (nhưng sẽ không tự động mở cửa sổ trên trình duyệt khi start cũng như live reloading như khi chạy `webpack-dev-server`)
 
 ```json - package.json
 {
