@@ -154,10 +154,76 @@ import(`./locale/${language}.json`).then((module) => {
 
 ===================================================================
 # Prefetching/Preloading modules
-* -> webpack 4.6.0+ adds support for prefetching and preloading.
+* -> webpack 4.6.0+ adds support for **prefetching** and **preloading**
+* -> using these **inline directives** while **`declaring our imports`** allows webpack to **output "Resource Hint"** which tells the browser that for:
+* -> **prefetch**: **`resource`** is probably needed for some **`navigation in the future`**
+* -> **preload**: **`resource`** will also be needed during the **`current navigation`**
 
-Using these inline directives while declaring your imports allows webpack to output “Resource Hint” which tells the browser that for:
 
-prefetch: resource is probably needed for some navigation in the future
-preload: resource will also be needed during the current navigation
-An example of this is having a HomePage component, which renders a LoginButton component which then on demand loads a LoginModal component after being clicked.
+## Prefetching
+* _Ex: a `HomePage` component, which renders a `LoginButton` component which then on demand loads a `LoginModal` component after being clicked_
+
+```js - LoginButton.js
+import(/* webpackPrefetch: true */ './path/to/LoginModal.js');
+```
+
+* -> this will result in **<link rel="prefetch" href="login-modal-chunk.js">** being **appended in the `head` of the page**
+* -> which will **instruct the browser to `prefetch` in `idle` time** the _login-modal-chunk.js_ file
+* -> _webpack_ will **add the `prefetch hint` once the `parent chunk` has been loaded**
+* -> phần **"/* webpackPrefetch: true */"** được gọi là **`webpack magic comments`** (https://webpack.js.org/api/module-methods/)
+
+* _tức là chưa cần xài, nhưng đang rãnh thì cứ load trước đi; sau này xài_
+
+## Preloading
+* -> an example of this can be having a Component which always depends on **a big library that should be in a separate chunk**
+* -> **`Note`**: using **`webpackPreload`** incorrectly can actually **hurt performance**, so be careful when using it
+
+### "Preload" vs "Prefetch"
+* _**Preload directive** has a bunch of differences compared to **prefetch**:_
+* -> _`a preloaded chunk`_ **starts loading in `parallel` to the parent chunk**; _`a prefetched chunk`_ **starts `after` the parent chunk finishes loading**
+* -> _`a preloaded chunk`_ has medium priority and is **instantly downloaded**; _`a prefetched chunk`_ is downloaded while the browser is idle
+* -> _`a preloaded chunk`_ **should be instantly requested by the parent chunk**; _`a prefetched chunk`_ **can be used `anytime` in the future**
+
+### Example:
+* _a component `ChartComponent` which needs **a huge** `ChartingLibrary`_
+* _it displays a `LoadingIndicator` when rendered and instantly does an **on demand import** of `ChartingLibrary`_
+```js - ChartComponent.js
+import(/* webpackPreload: true */ 'ChartingLibrary');
+```
+* -> When a `page` which uses the `ChartComponent` is requested, the `charting-library-chunk` is also requested via **<link rel="preload">**
+* -> assuming the `page-chunk` is smaller and finishes faster, the page will be displayed with a `LoadingIndicator`, until the already requested `charting-library-chunk` finishes
+* => this will give **a little load time** boost since it **`only needs one round-trip instead of two`**; especially in **high-latency environments**
+
+* _tức là 1 cái page mới vô cứ hiện 1 UI nhẹ nhẹ gì đó trước đã (VD: Loading), còn UI chính nặng thì cứ load khi nào load xong sẽ thế vô cái Loading_
+
+### control "preload"
+* -> sometimes we need to have our own **`control over preload`**
+* -> For example, **preload of any dynamic import can be done via async script**; this can be useful in case of **streaming server side rendering**
+
+```js
+const lazyComp = () =>
+  import('DynamicComponent').catch((error) => {
+    // Do something with the error.
+    // For example, we can retry the request in case of any net error
+  });
+```
+
+* -> if the **script loading will fail before webpack starts loading of that script by itself** (_i **`webpack creates a script tag`** to **`load its code`**, if that **`script is not on a page`**_), 
+* -> that **catch handler won't start till `chunkLoadTimeout` is not passed**
+* -> this behavior can be unexpected; but it's explainable — webpack can not throw any error, **cause webpack doesn't know**, that script failed.
+* -> webpack will **add `onerror` handler to the script** right after the error has happen
+
+* -> to prevent such problem we can **`add our own onerror handler`**, which **removes the script in case of any error**
+* -> in that case, **Webpack will create its own script** and **any error will be processed without any timeouts**
+```js
+<script
+  src="https://example.com/dist/dynamicComponent.js"
+  async
+  onerror="this.remove()"
+></script>
+```
+
+===================================================================
+# Bundle Analysis
+* -> once we start splitting our code, it can be useful to **analyze the output to check where modules have ended up**
+* -> https://github.com/webpack/analyse
