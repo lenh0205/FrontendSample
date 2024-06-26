@@ -80,9 +80,8 @@ Uncaught ReferenceError: cosnole is not defined
 * -> the only downside is that we have to **refresh your browser in order to see the changes**
 * -> to make that would happen automatically as well, we can use **webpack-dev-server** 
 
-
 * -> add an **npm script** that will **`start webpack's Watch Mode`**; 
-* _then we run `npm run watch`; we can see that it **doesn't exit the command line** because the script is currently watching your files_
+* _then we run `npm run watch`; we can see that it **doesn't exit the command line** because the script is currently watching our files_
 
 ```json - package.json
 {

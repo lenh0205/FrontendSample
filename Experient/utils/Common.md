@@ -9,7 +9,6 @@ const myParam = urlParams.get('myParam'); // get specific query param
 const params = Object.fromEntries(urlSearchParams.entries()); // get all query params
 ```
 
-
 # check an object is literal object
 ```js - for simple case only
 // Note: this won't work if "obj" was instantiated in a different window or frame
@@ -178,4 +177,38 @@ PUBLIC_URL = /qlvbdnn/DesktopModules/MVC/QuanLyVanBan/GUI/Scripts/build/
 
 // index.html
 <script type="text/javascript" src="%PUBLIC_URL%/base64.js"></script>
+```
+
+# cut string
+* _these method `doesn't change origin string`_
+* _nếu không có `đối số thứ 2` thì cắt tới cuối_
+* _nếu `argument` lớn hơn string length, thì `string length` sẽ được sử dụng_
+* _về cơ bản thì `slice` và `substring` sẽ hơi hơi giống nhau_
+
+```js - cut "a number of character" from "position" 
+string.substr(start, length);
+// "start" is negative - select character starting from the end of string
+
+var str = "abcd";
+str.substr(-3, 2); // "bc"
+```
+
+```js - cut from "position" to "position"
+string.slice(start, end);
+// if "start" > "stop" - return "emptry string"
+// "start" is "negative" - slice() return "empty string"
+// "end" is "negative" - selects characters starting from the end of the string
+
+str.slice(-2, 0); // ""
+str.slice(1, -1); // "bc"
+```
+
+```js - cut from "position" to "position"
+string.substring(start, end)
+// if "start" > "stop" - swap these 2 arguments
+// "start" is negative - select character starting from the end of string
+// "end" is negative - sets "end" to: string.length – Math.abs(stop) (original value), except bounded at 0 (thus, Math.max(0, string.length + end)) 
+
+str.substring(-2, 1); // "a"
+str.substring(-5, 1); // "a"
 ```

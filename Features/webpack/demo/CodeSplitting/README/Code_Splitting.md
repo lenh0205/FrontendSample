@@ -166,11 +166,12 @@ import(`./locale/${language}.json`).then((module) => {
 ```js - LoginButton.js
 import(/* webpackPrefetch: true */ './path/to/LoginModal.js');
 ```
-
 * -> this will result in **<link rel="prefetch" href="login-modal-chunk.js">** being **appended in the `head` of the page**
+* -> phần **comment "/* webpackPrefetch: true */"** được gọi là **`Prefetch directive`** thuộc **`webpack magic comments`** (https://webpack.js.org/api/module-methods/)
+* -> _khi webpack gặp dòng này nó sẽ generate 1 seperate chunk cho "LoginModal.js" và add 1 prefetch link vào html của ta_ 
+
 * -> which will **instruct the browser to `prefetch` in `idle` time** the _login-modal-chunk.js_ file
 * -> _webpack_ will **add the `prefetch hint` once the `parent chunk` has been loaded**
-* -> phần **"/* webpackPrefetch: true */"** được gọi là **`webpack magic comments`** (https://webpack.js.org/api/module-methods/)
 
 * _tức là chưa cần xài, nhưng đang rãnh thì cứ load trước đi; sau này xài_
 
@@ -187,10 +188,12 @@ import(/* webpackPrefetch: true */ './path/to/LoginModal.js');
 ### Example:
 * _a component `ChartComponent` which needs **a huge** `ChartingLibrary`_
 * _it displays a `LoadingIndicator` when rendered and instantly does an **on demand import** of `ChartingLibrary`_
+
 ```js - ChartComponent.js
 import(/* webpackPreload: true */ 'ChartingLibrary');
 ```
 * -> When a `page` which uses the `ChartComponent` is requested, the `charting-library-chunk` is also requested via **<link rel="preload">**
+
 * -> assuming the `page-chunk` is smaller and finishes faster, the page will be displayed with a `LoadingIndicator`, until the already requested `charting-library-chunk` finishes
 * => this will give **a little load time** boost since it **`only needs one round-trip instead of two`**; especially in **high-latency environments**
 
