@@ -35,6 +35,11 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 * => vậy nên ta có thể clear những event; 
 * => hoặc với những `pending Promise` có logic tham chiếu đến 1 biến tại lần re-render hiện tại, ta có thể modify biến đó trong clean-up function trước khi lần re-render tiếp theo xảy ra
 
+* **cleanup function** - the **`function return`** from **`callback of useEffect()`** will get call in 2 scenarios
+* -> gets called when the **component unmounts** (_avoid setState on unmounted component_)
+* -> the **`previous effect's cleanup`** gets called when the dependency array changes and **the effect needs to run again**
+https://reacttraining.com/blog/useEffect-cleanup
+
 ==================================================
 # useReducer:
 * Dùng thay thế cho useState
