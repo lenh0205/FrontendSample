@@ -24,8 +24,9 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 * -> vì nếu ta setState() 1 object trong khi chỉ update 1 property của nó, thì React sẽ update tất cả React element s/d property của object đó
 * -> những hook có [dependecies] thì việc phụ thuộc vào những giá trị cụ thể cũng dễ dàng hơn
 
-* -> trong hầu hết các trường hợp thì ta sẽ giữ state trong useState(); nhưng trong trường hợp hợp là State của 1 Provider nằm ở cấp cao nhất của ứng dụng thì điều này sẽ không cần
-* -> trong trường hợp này, update trực tiếp State mà không cần phải re-render lại sẽ đơn giản và hiệu quả hơn
+* -> trong hầu hết các trường hợp thì ta sẽ giữ state trong useState(); 
+* -> nhưng trong trường hợp hợp là State của 1 Provider nằm ở cấp cao nhất của ứng dụng thì có thể điều này sẽ không cần (vì component không re-render - không làm reset state)
+* -> trong một số trường hợp kiểu này, có thể việc **update trực tiếp State** mà không cần phải re-render lại sẽ đơn giản và hiệu quả hơn
 
 ===================================================
 # useEffect
@@ -35,10 +36,35 @@ https://stackoverflow.com/questions/73599444/reacts-context-api-re-renders-all-c
 * => vậy nên ta có thể clear những event; 
 * => hoặc với những `pending Promise` có logic tham chiếu đến 1 biến tại lần re-render hiện tại, ta có thể modify biến đó trong clean-up function trước khi lần re-render tiếp theo xảy ra
 
-* **cleanup function** - the **`function return`** from **`callback of useEffect()`** will get call in 2 scenarios
-* -> gets called when the **component unmounts** (_avoid setState on unmounted component_)
+## cleanup function
+* the **`function return`** from **`callback of useEffect()`** - create a **pending promise** - will get resolved in 2 scenarios
+* -> gets called when the **component unmounts** 
 * -> the **`previous effect's cleanup`** gets called when the dependency array changes and **the effect needs to run again**
-https://reacttraining.com/blog/useEffect-cleanup
+
+* -> lý do mà ta thường nghĩ khi dùng cleanup function là **`avoid setState on unmounted component`**, nhưng chính xác phải là để giải quyết **race condition** problem
+* -> when **`race condition`** happen, what happen if the **component going to unmount** first (_Ex: we navigated to another page_) before the **promise resolves** ? 
+* -> or if our component fetch data base on a prop, this props change multiple time before each fetching data complete. **`Does component will render with the last fetching data ?`**
+
+* -> the cleanup function below will prevent us from race-condition
+```js
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null)
+  
+  useEffect(() => {
+    let isCurrent = true
+    getUser(userId).then((user) => {
+      if (isCurrent) {
+        setUser(user)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [userId])
+
+  return <div>...</div>;
+}
+```
 
 ==================================================
 # useReducer:
