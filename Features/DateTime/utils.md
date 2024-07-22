@@ -11,7 +11,8 @@ var datetime = "full date time:
     + currentdate.getSeconds();
 ```
 
-# ".getDate()" return an interger representing the current day of the week from 0 to 6 (Sunday is "0")
+# Get current day of the week
+* -> **.getDate()** return **`an interger representing the current day of the week from 0 to 6`** (Sunday is "0")
 ```js
 // Assumpte "date" is Wednesday
 date.getDay(); // Output: 3

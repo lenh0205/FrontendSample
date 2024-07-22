@@ -1,3 +1,8 @@
+# Shadow DOM:
+https://css-tricks.com/playing-shadow-dom/
+https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM
+
+==================================================
 https://webpack.js.org/loaders/style-loader/
 https://webpack.js.org/loaders/css-loader/
 https://stackoverflow.com/questions/60659473/inject-css-styles-to-shadow-root-via-webpack
@@ -13,7 +18,6 @@ https://css-tricks.com/saving-the-day-with-scoped-css/
 https://css.oddbird.net/scope/
 https://stackoverflow.com/questions/47413520/restrict-css-applying-on-a-particular-div
 
-==================================================
 # Triển khai Shadow DOM cho React (using 'create-react-app')
 
 ## Step 1 thay đổi React root render:

@@ -1,4 +1,4 @@
-
+==========================================================================
 # git cherry-pick
 * -> để lấy 1 commit từ 1 nhánh khác về nhánh hiện tại
 https://stackoverflow.com/questions/36975986/cherry-pick-shows-no-m-option-was-given-error
@@ -11,9 +11,10 @@ git cherry-pick <SHA>
 git cherry-pick -m 1 <SHA>
 ```
 
+==========================================================================
 # git rebase
 
-
+==========================================================================
 # log commit between 2 dates
 ```js
 git log --since="2022-04-22" --until="2022-04-24" // from '22 April 2022' to '24 April 2022'
@@ -24,6 +25,7 @@ git log --since='2 weeks ago'
 git log --until='yesterday'
 ```
 
+==========================================================================
 # delete branch
 
 ```js
@@ -37,4 +39,19 @@ git push origin --delete remoteBranchName
 // -> someone else has already deleted the branch
 // -> we just need to synchronize our branch list:
 git fetch -p
+```
+
+==========================================================================
+# Merge 2 Git repositories
+* _https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories_
+
+```r
+cd path/to/project-a
+git checkout some-branch
+
+cd path/to/project-b
+git remote add project-a /path/to/project-a
+git fetch project-a --tags
+git merge --allow-unrelated-histories project-a/some-branch
+git remote remove project-a
 ```
