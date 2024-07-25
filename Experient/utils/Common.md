@@ -1,4 +1,4 @@
-
+=================================================================
 # Get "query parameter" by javascript
 ```js
 const urlParams = new URLSearchParams(window.location.search);
@@ -9,6 +9,7 @@ const myParam = urlParams.get('myParam'); // get specific query param
 const params = Object.fromEntries(urlSearchParams.entries()); // get all query params
 ```
 
+=================================================================
 # check an object is literal object
 ```js - for simple case only
 // Note: this won't work if "obj" was instantiated in a different window or frame
@@ -145,6 +146,8 @@ Object.getPrototypeOf(obj) === Object.prototype
 </html>
 ```
 
+
+=================================================================
 # add javascript library file directly to index.html and use it in React 
 
 ```js
@@ -169,6 +172,7 @@ export const vgca_sign_copy = validateFunc((window as any)?.vgca_sign_copy);
 export const vgca_sign_issued = validateFunc((window as any)?.vgca_sign_issued);
 ```
 
+=================================================================
 # Take route variable from .env file into "index.html" before bundling
 
 ```js
@@ -179,6 +183,7 @@ PUBLIC_URL = /qlvbdnn/DesktopModules/MVC/QuanLyVanBan/GUI/Scripts/build/
 <script type="text/javascript" src="%PUBLIC_URL%/base64.js"></script>
 ```
 
+=================================================================
 # cut string
 * _these method `doesn't change origin string`_
 * _nếu không có `đối số thứ 2` thì cắt tới cuối_
