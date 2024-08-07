@@ -62,3 +62,22 @@ date2 = new Date(date2)
 
 compare2Dates(date1, date2) // Output: 1
 ```
+
+=================================================================================
+# Caculate the number of days between two dates
+
+```js
+const date1 = new Date("01/16/2024");
+const date2 = new Date("01/26/2024");
+
+const differenceInTime = date2.getTime() - date1.getTime();
+const differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
+```
+
+=================================================================================
+# check if given string is valid datetime format
+```js
+const invalidFormat = Date.parse('01 Jan 197a 00:00:00 GMT'); // Output: NaN
+const unixTimeZero = Date.parse('01 Jan 1970 00:00:00 GMT'); // Output: 0
+const unixTime1 = Date.parse('04 Dec 1995 00:12:00 GMT'); // Output: 818035920000
+```
