@@ -1,3 +1,5 @@
+> có câu hỏi là nếu như ta coi 1 bộ phim ta đang ở đầu bộ phim, mà ta tua đến giữa bộ phim thì nó có tải toàn bộ chunk trước đó không ?
+> chuyện gì xảy ra nếu buffer bị đầy ? liệu chunk có được phép tới nữa không ?
 
 ================================================
 # Buffer / Data Buffer

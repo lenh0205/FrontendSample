@@ -43,4 +43,13 @@ const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
 axios.get('https://example.com/api', { 
     headers: { 'Authorization': 'Bearer ' + token } 
 })
+
+// hoặc:
+const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
+const body = {
+   key: "value"
+};
+axios.post('http://localhost:8000/api/v1/get_token_payloads', body, config);
 ```
