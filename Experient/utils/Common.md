@@ -10,6 +10,23 @@ const params = Object.fromEntries(urlSearchParams.entries()); // get all query p
 ```
 
 =================================================================
+# iretate through all element of an 'literal object' or 'Map' object for later processing
+* -> khác với Array sinh ra để lướt qua các phần tử; đối với **literal object** hoặc **Map** ta sẽ cần dùng **`entries`** để đưa chúng về dạng **`Iterator`** mới lặp được 
+
+```js
+// literal object
+const obj = {apples: 500, bananas: 300, oranges: 200};
+const entryObj = Object.entries(obj); // Output: [ ["apples", 500], ["bananas", 300], ["oranges", 200] ];
+const toObj = Object.fromEntries(entryObj); // Output: {apples: 500, bananas: 300, oranges: 200}
+
+// Map
+const fruits = new Map(entryObj);
+const fruitsArr = Array.from(fruits); // Output: [ ["apples", 500], ["bananas", 300], ["oranges", 200] ]
+const fruitsEntry = fruits.entries(); // Output: MapIterator
+const fruitsObj = Object.fromEntries(fruitsEntry); // Output: {apples: 500, bananas: 300, oranges: 200}
+```
+
+=================================================================
 # check an object is literal object
 ```js - for simple case only
 // Note: this won't work if "obj" was instantiated in a different window or frame
@@ -145,7 +162,6 @@ Object.getPrototypeOf(obj) === Object.prototype
 </body>
 </html>
 ```
-
 
 =================================================================
 # add javascript library file directly to index.html and use it in React 

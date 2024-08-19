@@ -51,8 +51,8 @@ import { SelectBox } from "devextreme-react";
 ```
 
 # Khi cần tìm 1 code đang chạy sai mà không có bất kỳ lỗi nào bắn ra trong Console, Network,...
-* -> ta cần vô component đó comment hết phần render UI lại; để xem phần logic component chạy đúng chưa
-* -> khi check tầng render UI nếu có quá nhiều component con ta nên dùng binary search
+* -> ta cần vô component đó **`comment hết phần render UI lại`**; để xem phần logic component chạy đúng chưa
+* -> khi check tầng render UI nếu có quá nhiều component con ta nên dùng **`binary search`**
 * -> comment từng khúc để biết lỗi xảy ra chỗ nào
 * -> tìm xem thật sự lỗi do component con nào
 
@@ -80,3 +80,7 @@ import { SelectBox } from "devextreme-react";
 
 # 1 page trên production chết: Error: Minified React error #130; at Bu (bundle.js?v=01.00.00.06:2:7463008) at e (bundle.js?v=01.00.00.06:2:7407124)
 * Có thể là view của GUI đang để sai tên
+
+# trong trường hợp dữ liệu load lên UI (lần đầu) ra không như mong muốn
+* -> đầu tiên ta cần **`comment tất cả những component con`** của nó xem có phải do những thằng này ảnh hưởng không
+* -> nếu không phải do render component UI, thì giờ ta sẽ **`debug phần logic`**; đầu tiên **`đưa tất cả useEffect về 1 chỗ`** rồi comment từng cái xem là useEffect() nào ảnh hưởng 
