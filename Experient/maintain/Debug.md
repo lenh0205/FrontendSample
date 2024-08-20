@@ -84,3 +84,13 @@ import { SelectBox } from "devextreme-react";
 # trong trường hợp dữ liệu load lên UI (lần đầu) ra không như mong muốn
 * -> đầu tiên ta cần **`comment tất cả những component con`** của nó xem có phải do những thằng này ảnh hưởng không
 * -> nếu không phải do render component UI, thì giờ ta sẽ **`debug phần logic`**; đầu tiên **`đưa tất cả useEffect về 1 chỗ`** rồi comment từng cái xem là useEffect() nào ảnh hưởng 
+
+# React - UI bị giật/chớp do phải tạo lại từ đầu
+* -> nguyên nhân mà UI của 1 component bị giật có thể là do nó bị **`unmounted rồi mounted lại`** ngay lập tức (_thay vì re-render như bình thường_)
+
+* -> để debug ta hãy đặt các **`clean-up function`** trong components tree để biết chính xác component đó là **tự nó unmounted** hay **do component cha unmounted dẫn đến nó bị unmounted**
+```js
+useEffect(() => {
+  return () => console.log("this component is unmounted!")
+}, [])
+```

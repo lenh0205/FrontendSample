@@ -10,7 +10,7 @@ const params = Object.fromEntries(urlSearchParams.entries()); // get all query p
 ```
 
 =================================================================
-# iretate through all element of an 'literal object' or 'Map' object for later processing
+# iretate through all key-value pair of an 'literal object' or 'Map' object for later processing
 * -> khác với Array sinh ra để lướt qua các phần tử; đối với **literal object** hoặc **Map** ta sẽ cần dùng **`entries`** để đưa chúng về dạng **`Iterator`** mới lặp được 
 
 ```js
@@ -233,3 +233,40 @@ string.substring(start, end)
 str.substring(-2, 1); // "a"
 str.substring(-5, 1); // "a"
 ```
+
+=================================================================
+> in conclusion, while there are multiple ways to embed a PDF in our HTML document, it's essential to consider the user experience, especially in scenarios where the PDF might not be accessible
+> using fallback options ensures your users can still access the content one way or another.
+
+# Embed resource in html
+
+## using the embed Tag
+* -> the **`embed tag`** is a part of the HTML5 specification, making it compatible with most modern browsers
+* -> if the browser does not support PDF embedding (common with some mobile devices), our users might see nothing
+
+```js
+// we can embed a PDF using the embed tag as follows:
+<embed src="home.pdf" type="application/pdf" width="100%" height="100%">
+```
+
+## using the iframe Tag
+* -> a safer option to ensure that our **`users can access the PDF`** is by using an iframe; if a browser fails to render the PDF, it usually **`triggers a download`**
+* -> the message "Download the PDF" will only be displayed if the browser does not support the iframe tag; still, it's not the best experience if the PDF isn't available
+
+```js
+<iframe src="home.pdf" width="100%" height="100%">
+  <a href="home.pdf">Download the PDF</a>
+</iframe>
+```
+
+## using the object Tag
+* -> the object tag offers even more flexibility; If the PDF isn't found, we can provide a fallback, such as an image or a message:
+* -> this way, you can provide a more appropriate error message or an alternative for your users when the PDF isn't available.
+
+```js
+<object data="home.pdf" type="application/pdf" width="100%" height="100%">
+  <img src="broken.png" alt="PDF not found">  {/** fallback **/}
+  <p>Download the PDF <a href="home.pdf">here</a></p>
+</object>
+```
+

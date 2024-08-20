@@ -19,11 +19,11 @@ alert(buffer.byteLength); // 16
 
 ## ArrayBuffer is different from Array
 * -> has a **`fixed length`**, we can’t increase or decrease it.
-* -> it takes exactly that much space in the memory.
+* -> it takes exactly that much space in the memory
 * -> to access individual bytes, **view** object is needed (_not buffer[index]_)
 
 ## "View" object
-* -> _Uint8Array, Uint16Array, Uint32Array, Float64Array, ..._ 
+* -> **Uint8Array**, **Uint16Array**, **Uint32Array**, **Float64Array**, ... 
 * -> **`does not store anything on its own`**
 * ->  just **`give an interpretation of the bytes`** stored in the ArrayBuffer
 

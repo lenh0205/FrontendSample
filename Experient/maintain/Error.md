@@ -59,9 +59,15 @@ body {
 ```
 
 ========================================================================
-# Lỗi "Minified React error #310; use the non-minified dev environment" trên production và "Rendered more hooks than during the previous render" trên development
+# React - Lỗi "Minified React error #310; use the non-minified dev environment" trên production và "Rendered more hooks than during the previous render" trên development
 * -> ta cần đảm bảo **Only Call Hooks at the Top Level** -không call nó trong `loops, conditions, or nested functions`
 * -> đảm bảo **Only Call Hooks from React Functions** - không call Hooks from regular JavaScript functions
 
 * -> nếu ta kiểm tra hết mà vẫn bị lỗi thì có thể là do xung đột các thư viện mà ta import; VD: `useTranslate` ta thử bỏ nó ra xem còn bị lỗi không
 * -> hoặc 1 số cấu hình lạ của thằng devextreme, thử bỏ đi xem; hoặc `cellRender` của `Column` chỉ dùng để render UI, nếu ta muốn dùng **`useState()`** thì ta hãy tách phần UI return ra 1 component riêng rồi s/d React hook trong nó
+
+========================================================================
+# Devextreme lib - lỗi khi select 1 nhưng lại thành select all trong DataGrid
+* -> đây có thể là do ta đang **`truyền sai key`** để nó có thể chọn
+* -> đầu tiên ta select rồi vào **DevTool/Application/Session Storage/** xem xem SelectedRowKey có giá trị như nào, nếu mà là mảng undefined thì giả thiết của ta có vẻ đúng
+* -> ta sẽ cần kiểm tra lại (_thử bỏ đi_) các property như **`key`**, **`keyExpr`** của DataGrid và đặc biệt là property **`key`** của **CustomStore**
