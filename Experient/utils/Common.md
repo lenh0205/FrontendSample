@@ -10,6 +10,10 @@ const params = Object.fromEntries(urlSearchParams.entries()); // get all query p
 ```
 
 =================================================================
+# API - URLSearchParams
+* -> the "URLSearchParams" interface defines **`utility methods`** to **work with the `query string` of a URL**
+
+=================================================================
 # iretate through all key-value pair of an 'literal object' or 'Map' object for later processing
 * -> khác với Array sinh ra để lướt qua các phần tử; đối với **literal object** hoặc **Map** ta sẽ cần dùng **`entries`** để đưa chúng về dạng **`Iterator`** mới lặp được 
 
