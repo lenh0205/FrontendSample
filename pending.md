@@ -265,7 +265,6 @@ https://docs.skritter.com/article/250-spaced-repetition-system
 https://www.sciencedirect.com/science/article/abs/pii/S1364815223003006
 https://knowledge.wanikani.com/wanikani/srs/
 https://github.com/open-spaced-repetition/srs-benchmark
-https://docs.skritter.com/article/250-spaced-repetition-system#:~:text=A%20Spaced%20Repetition%20System%2C%20commonly,a%20learner%20to%20remember%20it.
 https://languagelearning.stackexchange.com/questions/3757/which-srs-algorithm-yields-greatest-evidence-based-remembering
 https://juliensobczak.com/inspect/2022/05/30/anki-srs/
 https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html

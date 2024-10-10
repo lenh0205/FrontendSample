@@ -10,8 +10,62 @@ const params = Object.fromEntries(urlSearchParams.entries()); // get all query p
 ```
 
 =================================================================
-# API - URLSearchParams
+# API - 'URLSearchParams' class
 * -> the "URLSearchParams" interface defines **`utility methods`** to **work with the `query string` of a URL**
+
+=================================================================
+# API - window.location 
+* -> return **`Location Object`** - contains **information about the current location (URL) of the documetn**
+
+```js - other ways to access "Location Object"
+const location = window.location          
+const location = window.document.location 
+const location = document.location        
+const location = location                 
+```
+
+```js - read property
+// current URL: https://www.viblo.asia.com:8888/posts/?filter=JS#1
+window.location.origin = 'https://www.viblo.asia.com:8888/posts'
+window.location.protocol = 'https:'
+window.location.host = 'www.viblo.asia.com:8888'
+window.location.hostname = 'www.viblo.asia.com'
+window.location.port = '8888'
+window.location.pathname = '/posts/'
+window.location.search = '?filter=JS'
+window.location.hash = '#1'
+window.location.href = 'https://www.viblo.asia.com:8888/posts/?filter=JS#1'
+```
+
+```js - update property
+// current URL: www.viblo.asia.com
+window.location.pathname = '/post-detail'; // nó sẽ redirect trang hiện tại đến "www.viblo.asia.com/post-detail"
+
+window.location.origin // can not be changed
+
+window.location.protocol = 'https'
+window.location.host = 'localhost:8080'
+window.location.hostname = 'localhost'
+window.location.port = '8080'
+window.location.pathname = 'path'
+window.location.search = 'query string' // (không cần truyền ?)
+window.location.hash = 'hash' // (không cần truyền #)
+window.location.href = 'url'
+```
+
+```js
+// loads a new document:
+// sẽ lưu current page trong history - nên ta có thể dùng nút Back để navigate về origin document
+window.location.assign();
+
+// replaces the current document with a new one:
+// nói chung là nó cũng giống thằng "assign" nhưng removes the current URL from the document history
+// nên là không thể dùng nút Back để navigate về original document
+window.location.replace();
+
+// reloads the current document: (does the same as the reload button in our browser)
+window.location.reload();
+```
 
 =================================================================
 # iretate through all key-value pair of an 'literal object' or 'Map' object for later processing
@@ -206,7 +260,6 @@ PUBLIC_URL = /qlvbdnn/DesktopModules/MVC/QuanLyVanBan/GUI/Scripts/build/
 =================================================================
 # cut string
 * _these method `doesn't change origin string`_
-* _nếu không có `đối số thứ 2` thì cắt tới cuối_
 * _nếu `argument` lớn hơn string length, thì `string length` sẽ được sử dụng_
 * _về cơ bản thì `slice` và `substring` sẽ hơi hơi giống nhau_
 
@@ -216,6 +269,7 @@ string.substr(start, length);
 
 var str = "abcd";
 str.substr(-3, 2); // "bc"
+str.substr(1); // "bcd" - cắt từ index=1 tới cuối
 ```
 
 ```js - cut from "position" to "position"
@@ -236,6 +290,7 @@ string.substring(start, end)
 
 str.substring(-2, 1); // "a"
 str.substring(-5, 1); // "a"
+str.substring(1); // "bcd" - cắt từ index=1 tới cuối
 ```
 
 =================================================================
