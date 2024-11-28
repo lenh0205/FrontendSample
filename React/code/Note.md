@@ -1,2 +1,0 @@
-# Khi viết thư viện cho dự án
-* -> cần có 1 cấu hình khi khởi tạo instance của thư viện; và cho phép truyền vào những cấu hình riêng để ghi đè cấu hình chung (nếu cần) khi sử dụng Method từ instance đó 

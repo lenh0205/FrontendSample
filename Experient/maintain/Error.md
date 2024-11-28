@@ -1,4 +1,4 @@
-
+=======================================================================
 # Typescript - Lỗi nếu ta đã cài package nhưng trang vẫn báo lỗi "Could not find a declaration file for module 'module-name'."
 * có 3 cách xử lý:
 * -> cài thư viện declare type for package from **@types**:
@@ -65,6 +65,19 @@ body {
 
 * -> nếu ta kiểm tra hết mà vẫn bị lỗi thì có thể là do xung đột các thư viện mà ta import; VD: `useTranslate` ta thử bỏ nó ra xem còn bị lỗi không
 * -> hoặc 1 số cấu hình lạ của thằng devextreme, thử bỏ đi xem; hoặc `cellRender` của `Column` chỉ dùng để render UI, nếu ta muốn dùng **`useState()`** thì ta hãy tách phần UI return ra 1 component riêng rồi s/d React hook trong nó
+
+# React - Lỗi khi app cố gắng request đến các resouce static file của React nhưng tìm không thấy
+* -> Ví dụ trong trường hợp **`custom 1 app`** MVC sử dụng React làm js; 
+* -> ta có thể hard code đường dẫn đến file entry point của React là **bundle.js**
+* -> nhưng vấn đề là file **bundle.js** sẽ cần load/request những chunk cũng như 1 số resource khác của nó
+* -> nên ta cần cung cấp **`PUBLIC_URL`** với đường đẫn đến thư mục **build** của React nếu không "bundle.js" chắc chắn sẽ request đến sai URL
+* -> hoặc ta tạo 1 thẻ anchor trong React có href tham chiếu đến 1 file static trong thư mục **`/public`** thì ta cần thêm **PUBLIC_URL** nếu không muốn khi deploy bị lỗi
+```js
+const pdfPath = process.env.PUBLIC_URL + '/assets/Scan_App_SetUp.msi';
+const link = document.createElement('a');
+link.href = pdfPath;
+link.download = 'Scan_App_SetUp.msi';
+```
 
 ========================================================================
 # Devextreme lib - lỗi khi select 1 nhưng lại thành select all trong DataGrid

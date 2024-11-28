@@ -10,6 +10,8 @@
 * -> own property: **lastModified** (readonly) , **lastModifiedDate** (readonly) , **name** (readonly) , **webkitRelativePath** (readonly)
 
 =============================================
+> nhưng tất cả convert này cần đảm bảo file type của output phải giống với file type của file gốc của Blob được tạo ra
+
 # Convert "Blob" to "File"
 > sometimes, we would like to have a File but we get a Blob object instead 
 
@@ -31,7 +33,8 @@ fetch('./image.jpeg')
 * -> **`create an actual File instance`**
 
 ## Making a Blob quack like a File
-* suitable for IE11 because it doesn’t support the File constructor
+* -> suitable for **`IE11`** because it doesn't support the File constructor
+* _`A Blob` is almost a `File`- it's just **missing the two properties**_
 
 ```js
 // the Blob instance from fetch request
@@ -41,17 +44,18 @@ myBlob.lastModified = new Date();
 // Blob seems like a File but it’s not a real File:
 console.log(myBlob instanceof File); // false
 console.log(myBlob); // Blob { name: "image.jpeg", lastModified: ..., size: 1024, type: "image/jpeg" }
+// => ta có thể add "myBlog" như là 1 "File" object trong "FormData" và gửi dưới dạng multipart cho server nhận như là 1 file
 ```
 
 ## Creating an actual File
 
 ```js
 const myFile = new File([myBlob], 'image.jpeg', {
-    type: myBlob.type,
+    type: myBlob.type, // VD: image/jpeg
 });
 
 console.log(myFile); //  File { name: "image.jpeg", lastModified: ..., size: 1024, type: "image/jpeg" }
 
 console.log(myFile instanceof File); // true
-console.log(myFile instanceof Blob); // true -  inherits from Blob 
+console.log(myFile instanceof Blob); // true - inherits from Blob 
 ```
