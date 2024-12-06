@@ -85,6 +85,15 @@ const fruitsObj = Object.fromEntries(fruitsEntry); // Output: {apples: 500, bana
 ```
 
 =================================================================
+# iterate through NodeList
+* _không nên chuyển `NodeList` qua `Array` để lặp_
+```js
+for (let i = 0; i < foo.length; i++) {
+  // Do stuff
+}
+```
+
+=================================================================
 # check an object is literal object
 ```js - for simple case only
 // Note: this won't work if "obj" was instantiated in a different window or frame
