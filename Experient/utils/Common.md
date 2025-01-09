@@ -267,6 +267,18 @@ PUBLIC_URL = /qlvbdnn/DesktopModules/MVC/QuanLyVanBan/GUI/Scripts/build/
 ```
 
 =================================================================
+# Array
+
+## .splice()
+
+```js - Ex:
+const fruits = ["Banana", "Orange", "Apple", "Mango", "Test1"];
+fruits.splice(2, 1, "Lemon", "Kiwi");
+
+console.log(fruits); // Output: [Banana, Orange, Lemon, Kiwi, Mango, Test1]
+```
+
+=================================================================
 # cut string
 * _these method `doesn't change origin string`_
 * _nếu `argument` lớn hơn string length, thì `string length` sẽ được sử dụng_
