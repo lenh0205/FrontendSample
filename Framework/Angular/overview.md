@@ -62,8 +62,10 @@ export class NavbarComponent {
 }
 ```
 
+=========================================================================
 # Directives
-* _Angular has a variety of directives for building complex template_
+* -> _Directive is basically component but without its own HTML or CSS; instead it attaches to a host element and changes the behaviors of it_
+* -> any Directive that starts with a **`*`** means it's a **`structual directive`** - **controls how elements are rendered in the DOM**
 
 * -> **`*ngIf`** to handle conditional logic - **render element when truthy**
 ```js
@@ -73,6 +75,44 @@ export class NavbarComponent {
     <p *ngIf="count >= 1">{{ count }}</p> 
   `,
 })
+```
+
+```js - home.component.ts
+import { Component } from '@angular/core';
+import { VERSION } from '@angular/compiler'
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html'
+  styleUrls: ['./home.component.scss']
+})
+export class HomeComponent {
+  clicked = false;
+  title = `Angular ${VERSION.full} is rad!`;
+
+  boat = {
+    name: 'Starfire',
+    year: 1977,
+    img: 'assets/boat.jpg'
+  }
+
+  handleClick() {
+    this.clicked = true;
+  }
+}
+```
+```html - home.component.html
+<h1>{{ title }}</h1>
+
+<button [disabled]="clicked" (click)="handleClick()">
+  Click Me
+</button>
+
+<div>
+  <h3>{{ boat.name }}</h3>
+  <img [src]="boat.img" width="200px">
+  <p>Built in {{ boat.year }}</p>
+</div>
 ```
 
 * -> **`*ngFor`** - to **loop over an iterable value**
@@ -90,6 +130,7 @@ export class NavbarComponent {
 }
 ```
 
+=========================================================================
 # Dependency Injection
 * -> when our apps grows to hundreds of components, we'll likely need **a way to share data and functionality between them**
 * -> we can take our component logic here and extract it into a **`service`** which can be treated as **a global singleton throughout the application**
@@ -153,9 +194,34 @@ export class HomeComponent {
 </button>
 ```
 
-* -> now to actually use our working component within the context of our Angular application, the basic way is to declare it in the HTML with its **`selector`**
-```html
+* -> now to actually use our working component within the context of our Angular application, 
+* -> the basic way is to declare it in the HTML with its **`selector`**
+```html - app.component.html
 <app-home></app-home>
 
 <router-outlet></router-outlet>
 ```
+
+* -> cách thứ 2 là load it with the **`Router`** and have it appear where this **<router-outlet>** is based on a certain **URL path**
+```html - app.component.html
+<router-outlet></router-outlet>
+```
+```ts - app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+
+* -> in some case, we can also **load components dynamically but without changing the route** (_a common use case would be like a pop-up, modal window, _) 
+
+* -> lastly, a new way to load a component is with **`Angular Elements`**, which allows us to convert it to a **regular web component** and then use it outside of Angular completely
+* _Ex: drop it into a regular HTML page_
