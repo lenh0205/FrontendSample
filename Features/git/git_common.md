@@ -27,18 +27,31 @@ git log --until='yesterday'
 
 ==========================================================================
 # delete branch
+* _lưu ý không thể xoá branch nếu ta đang trên branch đó hiện tại_
+* https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely
 
 ```js
-// delete branch locally
-git branch -d localBranchName
+// delete remote (usually "origin")
+git push -d [remote] [branch] 
+git push [remote_name] --delete [branch] // for old Git v1.7.0
 
-// delete branch remotely
-git push origin --delete remoteBranchName
+// delete locally
+git branch -d [branch] 
+git branch -D <branch_name>
 
 // Error: unable to push to unqualified destination: remoteBranchName The destination refspec neither matches an existing ref on the remote nor begins with refs/, and we are unable to guess a prefix based on the source ref. error: failed to push some refs to 'git@repository_name'
 // -> someone else has already deleted the branch
 // -> we just need to synchronize our branch list:
 git fetch -p
+```
+
+==========================================================================
+# Create new branch and push to remote
+* https://stackoverflow.com/questions/1519006/how-do-i-create-a-remote-git-branch
+
+```bash
+git checkout -b [branch]
+git push [remote] [branch] 
 ```
 
 ==========================================================================
