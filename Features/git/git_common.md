@@ -56,9 +56,10 @@ git push [remote] [branch]
 
 ==========================================================================
 # Merge 2 Git repositories
-* _https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories_
+* https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories
+* https://stackoverflow.com/questions/17371150/moving-git-repository-content-to-another-repository-preserving-history
 
-```r
+```bash
 cd path/to/project-a
 git checkout some-branch
 
