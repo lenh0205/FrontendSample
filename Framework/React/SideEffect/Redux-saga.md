@@ -1,5 +1,11 @@
 https://dev.to/jolanglinais/asynchronous-with-redux-sagas-44dm
 https://dev.to/nodefiend/react-async-await-api-layer-with-redux-sagas-1893
+https://redux-saga.js.org/docs/introduction/BeginnerTutorial/
+https://redux-saga.js.org/docs/basics/DeclarativeEffects/
+
+=================================================================================================
+# Saga
+https://redux-saga.js.org/docs/introduction/SagaBackground
 
 =================================================================================================
 # Redux-saga
