@@ -3,11 +3,11 @@ https://dev.to/nodefiend/react-async-await-api-layer-with-redux-sagas-1893
 https://redux-saga.js.org/docs/introduction/BeginnerTutorial/
 https://redux-saga.js.org/docs/basics/DeclarativeEffects/
 
-=================================================================================================
+=========================================================================
 # Saga
 https://redux-saga.js.org/docs/introduction/SagaBackground
 
-=================================================================================================
+=========================================================================
 # Redux-saga
 * -> orchestrating the **`side-effects`**
 * -> Sagas similar to **normal reducers**, are functions which **`listen for dispatched actions`** but **`perform side effects`**, and **`return their own actions back to the normal reducer`**
@@ -23,9 +23,16 @@ https://redux-saga.js.org/docs/introduction/SagaBackground
 * => if we 'yield' a promise, redux-saga will **unwrap the promise** for us and **throw a catchable error** if the promise rejects
 
 ## Generator vs Async/Await
-* -> they're similar, but the fact remains that **`generators are considerably more powerful for "advanced" users`**
-* -> basically, we can transpile async/await into generators, but we can't do the reverse
-* => as a userland library, redux-saga **can handle asynchronous behavior in ways that async/await doesn't** (_Ex: **takeLastest()**_)
+* _basically, we can transpile async/await into generators, but we can't do the reverse_
+* -> they're similar, but the fact remains that **generators are considerably more powerful** for **`advanced users`** - because of the **`fine-grained control over execution flow**
+* => with the generator, Redux-Saga can **pause execution at any point (yield)**, **resume execution only when needed (next)**, **inject new data into the function (gen.next(data))**, **cancel execution at any time**
+* => as a userland library, redux-saga **can handle asynchronous behavior in ways that async/await doesn't** (_Ex: **`takeLastest()`**_)
+
+```cs
+// Ex: khi ta run background tasks (Polling data, WebSockets, Debouncing/throttling) trong 1 async function
+// thì khi request done nó sẽ execute tiếp phần code bên dưới, nhưng có những trường hợp ta không cần giá trị trả về từ response nữa và execute đoạn code bên dưới nữa (VD: giờ ta redirect sang trang khác)
+// generator có  thể giúp ta cancel ngay đoạn gửi request, không cần phải execute tiếp (nhưng không cancel request, nếu muốn đòi hỏi phải có AbortController)
+```
 
 ## Example of using Redux-saga
 ```js
@@ -224,7 +231,7 @@ function reducer(state = {}, action) {
 }
 ```
 
-=================================================================================================
+=========================================================================
 # Redux-Saga vs Thread
 * Redux Saga is not actually running on a separate thread; sagas are built with generator functions
 * -> it lets us write "background thread-like" behavior ("fork off this child function", "cancel that task", "wait for something else to occur")
